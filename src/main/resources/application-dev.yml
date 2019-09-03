@@ -1,0 +1,65 @@
+################# tomcat  ##################
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 100
+    min-spare-threads: 10
+  port: 8080
+  servlet:
+    context-path: /
+
+################# spring ##################
+#refer to: https://www.zhangshengrong.com/p/Z9a28w3VXV/
+# https://blog.csdn.net/qq_36952874/article/details/80733492
+# https://gitee.com/baomidou/mybatisplus-spring-boot/blob/master/src/main/resources/application.yml
+spring:
+  datasource:
+    name: mysql_sparrowadmin
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/sparrowadmin?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: phpwind.net
+      filter: mergeStat
+      initial-size: 1
+      min-idle: 1
+      max-active: 10
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      max-pool-prepared-statement-per-connection-size: 10
+
+################# mybatis-plus ##################
+#refer to: https://mp.baomidou.com/config/#updatestrategy-since-3-1-2
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.think.sparrowadmin.system.entity
+  global-config:
+    db-config:
+      id-type: uuid
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+
+################# logging ##################
+#refer to: https://www.cnblogs.com/bigdataZJ/p/springboot-log.html
+#https://my.oschina.net/woter/blog/1839781
+# path 和 file只配置一个，两个都配取file
+#properties转yaml： https://www.toyaml.com/index.html
+logging:
+  file: ./logs/admin.log
+  file.max-history: 10
+  file.max-size: 10MB
+  level:
+    root: info
+    com.think.sparrowadmin.system: debug
+  pattern:
+    file: '%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n'
+
+
+
