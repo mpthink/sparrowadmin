@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 /**
  * Refer to https://mp.baomidou.com/guide/generator.html
  * Generator code by mybatis-plus generator and use velocity templates
- * It will generate entity, mapper, mapper xml, service and controller files.
+ * It will generate entity, mapper, mapper system, service and controller files.
  * @author map6
  */
 public class CodeGenerator {

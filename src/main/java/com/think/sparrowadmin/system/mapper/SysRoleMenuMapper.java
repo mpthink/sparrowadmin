@@ -1,8 +1,10 @@
 package com.think.sparrowadmin.system.mapper;
 
-import com.think.sparrowadmin.system.entity.SysRoleMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.think.sparrowadmin.system.entity.SysRoleMenu;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +16,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
+
+    /**
+     * Get role permissions by uid
+     * @param uid
+     * @return
+     */
+    public List<String> selectRoleMenuIdsByUserId(String uid);
 
 }

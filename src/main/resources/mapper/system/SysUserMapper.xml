@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.think.sparrowadmin.system.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.think.sparrowadmin.system.entity.SysUser">
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+        <result column="user_status" property="userStatus" />
+        <result column="user_desc" property="userDesc" />
+        <result column="avatar" property="avatar" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_name, password, user_status, user_desc, avatar, gmt_create, gmt_modified
+    </sql>
+
+    <select id="selectUserList" resultType="java.util.HashMap">
+        SELECT u.* FROM `sys_user` u
+        <if test="search != null">
+            AND u.user_name LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
+        </if>
+        ORDER BY u.`gmt_create` DESC
+    </select>
+
+</mapper>

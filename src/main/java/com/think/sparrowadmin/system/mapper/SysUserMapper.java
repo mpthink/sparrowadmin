@@ -1,8 +1,12 @@
 package com.think.sparrowadmin.system.mapper;
 
-import com.think.sparrowadmin.system.entity.SysUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.think.sparrowadmin.system.entity.SysUser;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +18,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SysUserMapper extends BaseMapper<SysUser> {
+
+    List<SysUser> selectUserList(Page<SysUser> page, @Param("search") String search);
 
 }

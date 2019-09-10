@@ -1,8 +1,11 @@
 package com.think.sparrowadmin.system.mapper;
 
-import com.think.sparrowadmin.system.entity.SysMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.think.sparrowadmin.system.entity.SysMenu;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
+
+    List<String> selectMenuIdsByuserId(String uid);
+
+    List<String> selectResourceByUid(@Param("uid") String uid);
 
 }

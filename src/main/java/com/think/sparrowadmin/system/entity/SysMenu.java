@@ -67,8 +67,20 @@ public class SysMenu extends Model<SysMenu> {
      */
 	private LocalDateTime gmtModified;
 
+	public SysMenu(){}
 
-	public String getId() {
+    public SysMenu(String menuName, String pid,  String url, String icon, Integer sort, Integer deep, String code, String resource) {
+        this.pid = pid;
+        this.menuName = menuName;
+        this.url = url;
+        this.icon = icon;
+        this.sort = sort;
+        this.deep = deep;
+        this.code = code;
+        this.resource = resource;
+    }
+
+    public String getId() {
 		return id;
 	}
 

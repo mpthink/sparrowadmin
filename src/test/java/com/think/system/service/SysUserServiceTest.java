@@ -17,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
+
 /**
  * @author map6
  */
@@ -30,8 +32,11 @@ public class SysUserServiceTest {
 
     @Test
     public void testUpdateUser(){
-        SysUser sysUser = sysUserService.getById("0bb0261baf6eb69dff88f6b5df4ef9d6");
-        System.out.println(sysUser);
-
+        SysUser sysUser = new SysUser();
+        sysUser.setUserName("admin");
+        sysUser.setPassword("123456");
+        sysUser.setGmtCreate(LocalDateTime.now());
+        sysUser.setGmtModified(LocalDateTime.now());
+        sysUserService.insertUser(sysUser, null);
     }
 }
