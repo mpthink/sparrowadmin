@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.think.sparrowadmin.system.mapper.SysMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.think.sparrowadmin.system.entity.SysMenu">
+        <id column="id" property="id" />
+        <result column="pid" property="pid" />
+        <result column="menu_name" property="menuName" />
+        <result column="menu_status" property="menuStatus" />
+        <result column="url" property="url" />
+        <result column="icon" property="icon" />
+        <result column="sort" property="sort" />
+        <result column="deep" property="deep" />
+        <result column="code" property="code" />
+        <result column="resource" property="resource" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, pid, menu_name, menu_status, url, icon, sort, deep, code, resource, gmt_create, gmt_modified
+    </sql>
+
+    <select id="selectMenuIdsByuserId" parameterType="java.lang.String" resultType="java.lang.String">
+
+        SELECT DISTINCT m.`id` FROM `sys_user_role` ur
+        INNER JOIN `sys_role` r ON r.`id` = ur.`role_id`
+        INNER JOIN  `sys_role_menu` rm ON rm.`role_id` = ur.`role_id`
+        INNER JOIN `sys_menu` m ON m.`id` = rm.`menu_id`
+        AND ur.`user_id` = ''
+        AND r.`role_status` = 0
+        AND m.`resource` IS NOT NULL
+
+    </select>
+
+    <select id="selectResourceByUid" resultType="java.lang.String">
+
+        SELECT  DISTINCT m.`resource` FROM sys_user_role ur
+        LEFT JOIN sys_role_menu rm ON ur.`role_id` = rm.`role_id`
+        LEFT JOIN sys_menu m ON m.`id` = rm.`menu_id`
+        WHERE ur.`user_id` = ''
+        AND m.`resource` IS NOT NULL
+        AND m.`resource` != ''
+        AND m.deep=3
+
+    </select>
+
+</mapper>

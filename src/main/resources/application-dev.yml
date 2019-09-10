@@ -33,11 +33,33 @@ spring:
       test-on-borrow: false
       test-on-return: false
       max-pool-prepared-statement-per-connection-size: 10
+  ################# freemarker ##################
+  #refer to: https://www.bysocket.com/technique/1666.html
+  # static resource: https://www.cnblogs.com/paddix/p/8301331.html
+  freemarker:
+    suffix: .html
+    content-type: text/html
+    charset: UTF-8
+    cache: false
+    template-loader-path: classpath:/templates/views/
+    check-template-location: true
+    request-context-attribute: request
+    expose-request-attributes: true
+    expose-session-attributes: true
+    settings:
+      classic_compatible: true
+      template_update_delay: 0
+      default_encoding: UTF-8
+      number_format: 0
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      template_exception_handler: ignore
+
+
 
 ################# mybatis-plus ##################
 #refer to: https://mp.baomidou.com/config/#updatestrategy-since-3-1-2
 mybatis-plus:
-  mapper-locations: classpath*:mapper/**/*.xml
+  mapper-locations: classpath:/mapper/*/*Mapper.xml
   type-aliases-package: com.think.sparrowadmin.system.entity
   global-config:
     db-config:
@@ -45,6 +67,9 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    default-executor-type: reuse
 
 ################# logging ##################
 #refer to: https://www.cnblogs.com/bigdataZJ/p/springboot-log.html
@@ -57,7 +82,8 @@ logging:
   file.max-size: 10MB
   level:
     root: info
-    com.think.sparrowadmin.system: debug
+    com.think.sparrowadmin: debug
+    org.springframework: debug
   pattern:
     file: '%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n'
 

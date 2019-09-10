@@ -8,12 +8,7 @@
 
 package com.think.system.controller;
 
-import com.think.sparrowadmin.system.controller.SysUserController;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,14 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * @author map6
  */
-@RunWith(SpringRunner.class)
-@WebMvcTest(SysUserController.class)
+//@RunWith(SpringRunner.class)
+//@WebMvcTest(SysUserController.class)
 public class SysUserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
+    //@Test
     public void testHello() throws Exception {
         mockMvc.perform(get("/system/sysUser/hello")).andExpect(status().isOk()).andDo(print());
     }

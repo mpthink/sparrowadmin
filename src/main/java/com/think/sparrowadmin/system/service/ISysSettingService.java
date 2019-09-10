@@ -1,7 +1,9 @@
 package com.think.sparrowadmin.system.service;
 
-import com.think.sparrowadmin.system.entity.SysSetting;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.think.sparrowadmin.system.entity.SysSetting;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-09-02
  */
 public interface ISysSettingService extends IService<SysSetting> {
+
+    List<SysSetting> findAll();
 
 }
