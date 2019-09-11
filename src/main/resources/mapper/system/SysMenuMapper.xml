@@ -29,7 +29,7 @@
         INNER JOIN `sys_role` r ON r.`id` = ur.`role_id`
         INNER JOIN  `sys_role_menu` rm ON rm.`role_id` = ur.`role_id`
         INNER JOIN `sys_menu` m ON m.`id` = rm.`menu_id`
-        AND ur.`user_id` = ''
+        AND ur.`user_id` = #{uid}
         AND r.`role_status` = 0
         AND m.`resource` IS NOT NULL
 
@@ -40,7 +40,7 @@
         SELECT  DISTINCT m.`resource` FROM sys_user_role ur
         LEFT JOIN sys_role_menu rm ON ur.`role_id` = rm.`role_id`
         LEFT JOIN sys_menu m ON m.`id` = rm.`menu_id`
-        WHERE ur.`user_id` = ''
+        WHERE ur.`user_id` = #{uid}
         AND m.`resource` IS NOT NULL
         AND m.`resource` != ''
         AND m.deep=3

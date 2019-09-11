@@ -19,7 +19,7 @@
         id, user_name, password, user_status, user_desc, avatar, gmt_create, gmt_modified
     </sql>
 
-    <select id="selectUserList" resultType="java.util.HashMap">
+    <select id="selectUserList" resultMap="BaseResultMap" resultType="com.think.sparrowadmin.system.entity.SysUser">
         SELECT u.* FROM `sys_user` u
         <if test="search != null">
             AND u.user_name LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
