@@ -3,7 +3,6 @@ package com.think.sparrowadmin.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.think.sparrowadmin.common.bean.MyPage;
 import com.think.sparrowadmin.common.bean.Rest;
 import com.think.sparrowadmin.common.controller.SuperController;
 import com.think.sparrowadmin.system.entity.SysMenu;
@@ -70,14 +69,7 @@ public class SysMenuController extends SuperController {
             }
 
         }
-
-        MyPage<SysMenu> myPage = new MyPage<>();
-        myPage.setRecords(pageData.getRecords());
-        myPage.setCurrent(pageData.getCurrent());
-        myPage.setSize(pageData.getSize());
-        myPage.setTotal(pageData.getTotal());
-        myPage.setPages(pageData.getPages());
-        model.addAttribute("pageData", myPage);
+        model.addAttribute("pageData", pageData);
         return "system/menu/list";
     }
 

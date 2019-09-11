@@ -13,8 +13,8 @@
   	  <tr>
      <td>${(user.userName)!}</td>
      <td>${(user.userDesc)!'--'}</td>
-     <td>${(user.createTime?string('yyyy/MM/dd HH:mm:ss'))!}</td>
-     <td><#if user.userState==1>启用<#else><font color="red">禁用</font></#if></td>
+     <td>${(user.gmtCreate)!'--'}</td>
+     <td><#if user.userStatus==0>启用<#else><font color="red">禁用</font></#if></td>
    </tr>
   </#list>
 </table>

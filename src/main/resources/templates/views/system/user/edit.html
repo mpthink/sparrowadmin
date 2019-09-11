@@ -43,10 +43,10 @@
     	   <label  class="col-sm-2 control-label">状态</label>
     	   <div class="col-sm-10">
          <label>
-           <input name="userState" type="radio" class="minimal" ${(sysUser.userState == 1)?string('checked','')} value="1" lay-ignore> 启用
+           <input name="userStatus" type="radio" class="minimal" ${(sysUser.userStatus == 0)?string('checked','')} value="0" lay-ignore> 启用
          </label>
          <label>
-           <input name="userState" type="radio" class="minimal" ${(sysUser.userState == -1)?string('checked','')}  value="-1" lay-ignore> 禁用
+           <input name="userStatus" type="radio" class="minimal" ${(sysUser.userStatus == 1)?string('checked','')}  value="1" lay-ignore> 禁用
          </label>
          </div>
        </div>

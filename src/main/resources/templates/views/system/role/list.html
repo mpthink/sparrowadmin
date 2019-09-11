@@ -53,7 +53,7 @@
               	  <tr>
 	                <td>
 	                	<label>
-	                	<input value="${role.id}" name="roleState" type="checkbox" class="minimal checkbox-item">
+	                	<input value="${role.id}" name="roleStatus" type="checkbox" class="minimal checkbox-item">
 	                	${((pageData.current-1)*pageData.size +role_index+1)!}
 	                	</label>
 	                </td>
@@ -65,8 +65,8 @@
 	                ><span sysc sysc-url="/system/role/getCount?roleId=${role.id}" format=" [ %s个用户 ]"></span></a>
 	                </td>
 	                <td>${(role.roleDesc)!'--'}</td>
-	                <td>${(role.createTime?string('yyyy/MM/dd HH:mm:ss'))!'--'}</td>
-	                <td><#if role.roleState==1>启用<#else><font color="red">禁用</font></#if></td>
+	                <td>${(role.gmtCreate)!'--'}</td>
+	                <td><#if role.roleStatus==0>启用<#else><font color="red">禁用</font></#if></td>
 	                <td>
 	                	<@shiro.hasPermission name="authRole">
 	                		<a class="btn btn-success btn-xs dialog" href="javascript:;" data-url="/system/role/auth/${(role.id)!}" data-title="授权" data-width="850" data-height="600" data-toggle="tooltip" title="授权" data-placement="bottom">授权</a>
