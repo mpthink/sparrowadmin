@@ -33,7 +33,7 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
         /**
          * 删除原有权限
          */
-        this.remove(new QueryWrapper<SysRoleMenu>().eq("roleId",roleId));
+        this.remove(new QueryWrapper<SysRoleMenu>().eq("role_id",roleId));
         /**
          * 重新授权
          */

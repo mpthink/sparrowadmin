@@ -9,6 +9,8 @@ import com.think.sparrowadmin.system.entity.vo.TreeMenu;
 import com.think.sparrowadmin.system.service.ISysMenuService;
 import com.think.sparrowadmin.system.service.ISysSettingService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -24,6 +26,8 @@ import java.util.List;
  */
 //@Component
 public class GlobalInterceptor extends HandlerInterceptorAdapter {
+
+	private final static Logger LOG = LoggerFactory.getLogger(GlobalInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -64,6 +68,8 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 			 */
 			List<TreeMenu> treeMenus = SpringUtil.getBean(ISysMenuService.class).selectTreeMenuByUserId(me.getId());
 			request.setAttribute("treeMenus", treeMenus);
+
+			LOG.debug("Get tree menus!");
 			
 		}
 
