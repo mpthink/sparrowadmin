@@ -9,7 +9,7 @@
 package com.think.sparrowadmin.common.controller;
 
 import com.google.code.kaptcha.servlet.KaptchaExtend;
-import com.think.sparrowadmin.system.entity.SysUser;
+import com.think.sparrowadmin.common.annotation.LogAnnotation;
 import com.think.sparrowadmin.system.service.ISysLogService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -65,6 +65,7 @@ public class LoginController extends SuperController{
     /**
      * 执行登录
      */
+    @LogAnnotation("执行用户登录")
     @RequestMapping(value = "/doLogin",method= RequestMethod.POST)
     public  String doLogin(String userName,String password, String captcha,String return_url,RedirectAttributesModelMap model){
 
@@ -91,9 +92,6 @@ public class LoginController extends SuperController{
                 return redirectTo("/login");
             }
         }
-        Subject subject = SecurityUtils.getSubject();
-        SysUser sysUser = (SysUser) subject.getPrincipal();
-        sysLogService.insertLog("用户登录成功",sysUser.getUserName(),request.getRequestURI(),"");
         return redirectTo("/");
     }
 
