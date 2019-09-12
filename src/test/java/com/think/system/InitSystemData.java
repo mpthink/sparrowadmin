@@ -108,7 +108,7 @@ public class InitSystemData {
 
         SysMenu sysMenu15 = new SysMenu("系统配置",pid1,"/system/setting/page","fa-cog",6,2,"0106","setting");
         sysMenu15.insert();
-        String sysPID = sysMenu13.getId();
+        String sysPID = sysMenu15.getId();
         SysMenu sysMenu150 = new SysMenu("查询系统配置",sysPID,null,null,0,3,"010600","listSetting");
         sysMenu150.insert();
         SysMenu sysMenu151 = new SysMenu("操作系统设置",sysPID,null,null,1,3,"010601","doSetting");
