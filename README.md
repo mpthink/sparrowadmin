@@ -1,3 +1,3 @@
 # sparrowadmin
 
-This branch add apo, transaction function and fix some bugs.
+This branch add aop, transaction function and fix some bugs.
