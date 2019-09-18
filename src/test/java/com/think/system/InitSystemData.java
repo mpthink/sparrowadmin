@@ -10,23 +10,18 @@ package com.think.system;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.think.sparrowadmin.system.entity.*;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 /**
  * @author map6
  */
-@RunWith(SpringRunner.class)
-@ActiveProfiles("dev")
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@ActiveProfiles("dev")
+//@SpringBootTest
 public class InitSystemData {
 
-    @Test
+    //@Test
     public void initUserRole(){
         SysRole role = new SysRole();
         role = role.selectOne(new QueryWrapper<SysRole>().eq("role_name","SuperGroup"));
