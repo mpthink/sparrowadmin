@@ -103,7 +103,7 @@ public class SysUserController extends SuperController{
         List<SysRole> sysRoles = sysRoleService.list();
         QueryWrapper<SysUserRole> queryWrapper = new QueryWrapper<SysUserRole>();
         queryWrapper.eq("user_id ", id);
-        List<SysUserRole> mySysUserRoles = sysUserRoleService.list();
+        List<SysUserRole> mySysUserRoles = sysUserRoleService.list(queryWrapper);
         List<String> myRolds = mySysUserRoles.stream().map(sysUserRole -> sysUserRole.getRoleId()).collect(Collectors.toList());
         model.addAttribute("sysUser",sysUser);
         model.addAttribute("sysRoles",sysRoles);
