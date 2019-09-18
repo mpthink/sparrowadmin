@@ -1,5 +1,7 @@
 package com.think.sparrowadmin.common.controller;
 
+import com.think.sparrowadmin.common.config.Config;
+import com.think.sparrowadmin.common.util.OSinfoUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -38,6 +40,13 @@ public class FileUploadController extends SuperController{
 		
 		List<String> urls = new ArrayList<>();
 		Map<String, Object> result = new HashMap<>();
+		String staticFolder;
+		if(OSinfoUtil.isWindows()){
+		    staticFolder = Config.WIN_UPLOAD_FOLDER;
+        }else {
+		    staticFolder = Config.LINUX_UPLOAD_FOLDER;
+        }
+
 		
 		try {
 			for(MultipartFile myfile : file){  
@@ -51,8 +60,9 @@ public class FileUploadController extends SuperController{
 			            String ext =  FilenameUtils.getExtension(myfile.getOriginalFilename());
 			            String reName = RandomStringUtils.randomAlphanumeric(32).toLowerCase() + "."+ ext;
 			            String cdate = DateFormatUtils.format(new Date(), "yyyy-MM-dd");
-			            String realPath = request.getSession().getServletContext().getRealPath("/upload")+ File.separator +cdate; 
-			            FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, reName)); 
+			            //String realPath = request.getSession().getServletContext().getRealPath("/upload")+ File.separator +cdate;
+			            String realPath = staticFolder + cdate;
+                        FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, reName));
 			            urls.add("/upload/"+cdate+"/"+reName);
 			        }  
 			    }

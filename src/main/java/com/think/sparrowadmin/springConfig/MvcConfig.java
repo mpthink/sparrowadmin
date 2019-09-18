@@ -8,7 +8,9 @@
 
 package com.think.sparrowadmin.springConfig;
 
+import com.think.sparrowadmin.common.config.Config;
 import com.think.sparrowadmin.common.interceptor.GlobalInterceptor;
+import com.think.sparrowadmin.common.util.OSinfoUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -27,10 +29,12 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
+        // https://blog.csdn.net/qq_39025156/article/details/90055132
+        String uploadFilePath = OSinfoUtil.isWindows() ? Config.WIN_UPLOAD_FOLDER : Config.LINUX_UPLOAD_FOLDER;
         //资源映射
         registry.addResourceHandler("/plugins/**").addResourceLocations("classpath:/static/plugins/");
         registry.addResourceHandler("/app/**").addResourceLocations("classpath:/static/app/");
-        registry.addResourceHandler("/upload/**").addResourceLocations("classpath:/upload/");
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + uploadFilePath);
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 

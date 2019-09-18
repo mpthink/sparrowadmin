@@ -10,28 +10,23 @@ package com.think.system.mapper;
 
 import com.think.sparrowadmin.system.entity.SysUser;
 import com.think.sparrowadmin.system.mapper.SysUserMapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 
 /**
  * @author map6
  */
-@RunWith(SpringRunner.class)
-@ActiveProfiles("dev")
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@ActiveProfiles("dev")
+//@SpringBootTest
 public class SysUserMapperTest {
 
     //https://blog.csdn.net/weixin_30945319/article/details/99139194
     //http://www.imooc.com/article/287865
     @Autowired
     private SysUserMapper sysUserMapper;
-    @Test
+    //@Test
     public void testInsertUser(){
         SysUser sysUser = new SysUser();
         sysUser.setUserName("mpthink");
