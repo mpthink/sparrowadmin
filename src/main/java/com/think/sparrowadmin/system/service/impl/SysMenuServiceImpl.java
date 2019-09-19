@@ -60,7 +60,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         QueryWrapper<SysMenu> queryWrapper = new QueryWrapper<SysMenu>();
         queryWrapper.orderByAsc("sort");
         queryWrapper.eq("pid", pid);
-        queryWrapper.in("id", menuIds);
+        queryWrapper.in("id", menuIds.size() > 0 ? menuIds : Arrays.asList("noMenus"));
         List<SysMenu> sysMenus = this.list(queryWrapper);
         List<TreeMenu> treeMenus = new ArrayList<>();
         for(SysMenu sysMenu : sysMenus){
