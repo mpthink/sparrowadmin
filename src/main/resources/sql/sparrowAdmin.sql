@@ -4,6 +4,14 @@
 -- ------------------------------------------------------
 -- Server version	5.7.14
 
+-- -----------------------------------------------------
+-- Schema petshow
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `sparrowadmin`;
+CREATE SCHEMA IF NOT EXISTS `sparrowadmin` DEFAULT CHARACTER SET UTF8;
+USE `sparrowadmin`;
+
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;

@@ -18,9 +18,11 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
+      # 172.17.0.1 docker0 if address, refer to: https://www.cnblogs.com/haiton/p/11064727.html,
+      # GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Password5' WITH GRANT OPTION;
       url: jdbc:mysql://127.0.0.1:3306/sparrowadmin?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
-      password: phpwind.net
+      password: Password5
       filter: mergeStat
       initial-size: 1
       min-idle: 1
