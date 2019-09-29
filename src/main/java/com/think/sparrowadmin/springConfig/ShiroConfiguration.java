@@ -34,7 +34,7 @@ public class ShiroConfiguration {
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager security) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/");
         shiroFilterFactoryBean.setSuccessUrl("/");
         shiroFilterFactoryBean.setUnauthorizedUrl("/error/illegalAccess");
         shiroFilterFactoryBean.setSecurityManager(security);
@@ -51,7 +51,7 @@ public class ShiroConfiguration {
         filterMap.put("/logout", "logout");
         filterMap.put("/login", "anon");
         filterMap.put("/error", "anon");
-        filterMap.put("/**", "authc");
+        filterMap.put("/system/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;
     }

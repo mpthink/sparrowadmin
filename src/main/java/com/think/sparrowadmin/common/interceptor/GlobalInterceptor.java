@@ -8,6 +8,7 @@ import com.think.sparrowadmin.system.entity.SysUser;
 import com.think.sparrowadmin.system.entity.vo.TreeMenu;
 import com.think.sparrowadmin.system.service.ISysMenuService;
 import com.think.sparrowadmin.system.service.ISysSettingService;
+import com.think.sparrowadmin.system.service.ISysUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,8 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 
 	private final static Logger LOG = LoggerFactory.getLogger(GlobalInterceptor.class);
 
+	private final static Long VISITOR_ID = 999999999999999999L;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
@@ -48,6 +51,10 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
 			 */
 			SysUser me = ShiroUtil.getSessionUser();
 			if(me == null){
+                SysUser visitor = SpringUtil.getBean(ISysUserService.class).getById(VISITOR_ID);
+                request.setAttribute("currentUser", visitor);
+                List<TreeMenu> treeMenus = SpringUtil.getBean(ISysMenuService.class).selectTreeMenuByUserId(visitor.getId());
+                request.setAttribute("treeMenus", treeMenus);
 				return true;
 			}
 			me.setPassword("");

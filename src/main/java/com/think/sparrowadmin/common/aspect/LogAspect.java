@@ -56,7 +56,8 @@ public class LogAspect {
         sysLog.setTitle(methodName);
         sysLog.setUserName((sysUser != null) ? sysUser.getUserName() : "system");
         sysLog.setUrl(request.getRequestURI().toString());
-        sysLog.setParams(new Gson().toJson(request.getParameterMap()));
+        String params = new Gson().toJson(request.getParameterMap()).toString();
+        sysLog.setParams(params.substring(0, params.length()>1000 ? 900:params.length()-1));
         sysLog.insert();
         LOG.debug("记录日志:" + sysLog.toString());
     }
