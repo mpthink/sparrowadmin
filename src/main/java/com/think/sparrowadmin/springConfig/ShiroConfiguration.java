@@ -51,6 +51,7 @@ public class ShiroConfiguration {
         filterMap.put("/logout", "logout");
         filterMap.put("/login", "anon");
         filterMap.put("/error", "anon");
+        filterMap.put("/remexplus/**", "anon");
         filterMap.put("/system/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;

@@ -34,6 +34,7 @@ public class MvcConfig implements WebMvcConfigurer {
         //资源映射
         registry.addResourceHandler("/plugins/**").addResourceLocations("classpath:/static/plugins/");
         registry.addResourceHandler("/app/**").addResourceLocations("classpath:/static/app/");
+        registry.addResourceHandler("/remexplus/**").addResourceLocations("classpath:/static/remexplus/");
         registry.addResourceHandler("/upload/**").addResourceLocations("file:" + uploadFilePath);
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }

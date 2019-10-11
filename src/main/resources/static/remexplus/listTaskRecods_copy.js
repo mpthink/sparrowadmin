@@ -2,6 +2,8 @@
 var dataUrl = '/remexplus/taskRecord/getAll';
 var dataColumns = [
     {
+       checkbox: true
+    }, {
         field: 'Number',
         title: 'No',
         formatter: function (value, row, index) {
@@ -23,6 +25,42 @@ var dataColumns = [
             return '<a class="btn btn-xs btn-primary" href="/remexplus/job/' + "" + taskRecordId + "" + '">Display</a>';
         }
     }];
+
+
+$('#batchDeleteBtn').on("click",function () {
+    var index = layer.confirm('Are you sure to delete selected itmes？', {icon: 0,title:'Info',closeBtn: 0,skin: 'layui-layer-molv',btn: ['Confirm','Cancel']}, function(){
+        var rows = $("#dataTable").bootstrapTable('getSelections');// 获得要删除的数据
+        if (rows.length == 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
+            layer.alert('Please select items to delete!', {icon: 0,title:'Info',closeBtn: 0,skin: 'layui-layer-lan',btn: ['OK']});
+            return;
+        } else {
+            var ids = new Array();// 声明一个数组
+            $(rows).each(function() {// 通过获得别选中的来进行遍历
+                ids.push(this.id);// cid为获得到的整条数据中的一列
+            });
+            deleteRecords(ids)
+        }
+        layer.close(index);
+    });
+});
+
+var deleteUrl = '/remexplus/taskRecord/delete';
+
+function deleteRecords(ids) {
+    $.ajax({
+        url : deleteUrl,
+        data: {
+            ids: ids.toString()
+        },
+        type : "post",
+        dataType : "json",
+        success : function(data) {
+            $('#dataTable').bootstrapTable('refresh', {
+                url : dataUrl
+            });
+        }
+    });
+}
 
 function taskRecordsClientPagination() {
     $('#dataTable').bootstrapTable({

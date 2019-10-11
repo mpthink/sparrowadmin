@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @author map6
  */
 @Configuration
-@MapperScan("com.think.sparrowadmin.system.mapper")
+@MapperScan("com.think.sparrowadmin.*.mapper")
 public class MybatisPlusConfig {
     /**
      * mybatis-plus 分页插件
