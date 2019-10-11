@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.think.sparrowadmin.remexplus.mapper.RpTaskMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.think.sparrowadmin.remexplus.entity.RpTask">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="owner" property="owner" />
+        <result column="runner_pom" property="runnerPom" />
+        <result column="submit_pom" property="submitPom" />
+        <result column="remex_pom" property="remexPom" />
+        <result column="quartz" property="quartz" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_update" property="gmtUpdate" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, owner, runner_pom, submit_pom, remex_pom, quartz, gmt_create, gmt_update, status
+    </sql>
+
+    <select id="selectTaskList" resultMap="BaseResultMap" resultType="com.think.sparrowadmin.remexplus.entity.RpTask">
+        SELECT task.* FROM `rp_task` task
+        <if test="search != null">
+            AND task.name LIKE CONCAT('%',#{search,jdbcType=VARCHAR},'%')
+        </if>
+        ORDER BY task.`gmt_create` DESC
+    </select>
+
+</mapper>

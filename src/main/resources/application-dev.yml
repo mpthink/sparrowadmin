@@ -73,7 +73,7 @@ spring:
 #refer to: https://mp.baomidou.com/config/#updatestrategy-since-3-1-2
 mybatis-plus:
   mapper-locations: classpath:/mapper/*/*Mapper.xml
-  type-aliases-package: com.think.sparrowadmin.system.entity
+  type-aliases-package: com.think.sparrowadmin.*.entity
   global-config:
     db-config:
       id-type: uuid

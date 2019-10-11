@@ -12,10 +12,10 @@ $("*[data-tiggle='ajax']").click(function(){
 	$.confirm({
 		type: 'red',
 		closeIcon: true,
-	    title: '警告',
-	    content: dataConfirm ? dataConfirm : '确认操作?',
+	    title: 'Warning',
+	    content: dataConfirm ? dataConfirm : 'Confirm?',
 	    buttons: {
-	        '确认': {
+	        'Confirm': {
 	            btnClass: 'btn-blue',
 	            action: function(){
 	            	$.post(dataUrl,{},function(json){
@@ -23,15 +23,15 @@ $("*[data-tiggle='ajax']").click(function(){
 							window.location.reload();
 						}else{
 							$.alert({
-							    title: '提示',
+							    title: 'Info',
 							    content: json.msg,
-							    buttons:{"好的":{ btnClass: 'btn-blue'}}
+							    buttons:{"OK":{ btnClass: 'btn-blue'}}
 							});
 						}
 					});
 	            }
 	        },
-	        '取消':{}
+	        'Cancel':{}
 	    }
 	});
 	
@@ -50,19 +50,19 @@ $("*[delete-batch-url]").click(function(){
 	
 	if(ids.length==0){
 		$.alert({
-		    title: '提示',
+		    title: 'Info',
 		    backgroundDismiss:true,
-		    content: "请选择要删除的记录!",
-		    buttons:{"好的":{ btnClass: 'btn-blue'}}
+		    content: "Please select itmes to delete!",
+		    buttons:{"OK":{ btnClass: 'btn-blue'}}
 		});
 	}else{
 		$.confirm({
 			type: 'red',
 			closeIcon: true,
-		    title: '警告',
-		    content: "确认删除选中的【"+ids.length+"】条记录?",
+		    title: 'Warining',
+		    content: "Confirm delete: 【"+ids.length+"】rows?",
 		    buttons: {
-		        '确认': {
+		        'Confirm': {
 		            btnClass: 'btn-blue',
 		            action: function(){
 		            	$.post(deleteBatchUrl,{id:ids},function(json){
@@ -70,15 +70,15 @@ $("*[delete-batch-url]").click(function(){
 								window.location.reload();
 							}else{
 								$.alert({
-								    title: '提示',
+								    title: 'Info',
 								    content: json.msg,
-								    buttons:{"好的":{ btnClass: 'btn-blue'}}
+								    buttons:{"Ok":{ btnClass: 'btn-blue'}}
 								});
 							}
 						});
 		            }
 		        },
-		        '取消':{}
+		        'Cancel':{}
 		    }
 		});		
 	}

@@ -1,0 +1,92 @@
+<#include "/common/layout.html">
+    <@header>
+</@header>
+<@body>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            <small>RemExPlus > Tasks</small>
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <form action="/remexplus/task/list/1" method="post" class="form-inline">
+                        <div class="box-header">
+                            <div class="input-group">
+                                <a class="btn btn-primary dialog" href="javascript:;" data-url="/remexplus/task/add"
+                                   data-title="Create Task" data-width="850" data-height="550"><i
+                                        class="fa fa-plus"></i> New Task</a>
+                            </div>
+                        </div><!-- /.box-header -->
+                    </form>
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th width="100px"><input name="root" type="checkbox" class="minimal checkbox-toolbar">
+                                    NO
+                                </th>
+                                <th>Task Name</th>
+                                <th>Owner</th>
+                                <th>Runner Pom</th>
+                                <th>Submit Pom</th>
+                                <th>Remex Pom</th>
+                                <th>Quartz</th>
+                                <th>Status</th>
+                                <th width="120px">Operation</th>
+                            </tr>
+                            <#list pageData.getRecords() as task>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            ${((pageData.current-1)*pageData.size +task_index+1)!}
+                                        </label>
+                                    </td>
+                                    <td>${(task.name)!}</td>
+                                    <td>${(task.owner)!'--'}</td>
+                                    <td>${(task.runnerPom)!'--'}</td>
+                                    <td>${(task.submitPom)!'--'}</td>
+                                    <td>${(task.remexPom)!'--'}</td>
+                                    <td>${(task.quartz)!'--'}</td>
+                                    <td>
+                                        <#if task.status==0>Enable
+                                            <#else><font color="red">Disable</font>
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-xs dialog" href="javascript:;"
+                                           data-url="/remexplus/task/edit/${(task.id)!}" data-title="Edit Task" data-width="850"
+                                           data-height="550">Edit</a>
+                                        <a class="btn btn-danger btn-xs"
+                                           data-tiggle="ajax"
+                                           data-submit-url="/remexplus/task/delete?id=${(task.id)!}"
+                                           data-confirm="Be sure to delete?">Delete</a>
+                                    </td>
+                                </tr>
+                            </#list>
+                        </table>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer row">
+                        <div class="col-md-6">
+                            <#include "/common/paginateBar.html" />
+                            <@paginate pageData=pageData actionUrl="/remexplus/rpTask/list/"
+                            urlParas="?search=${search!}&daterange=${daterange!}" />
+                        </div>
+                        <div class="col-md-6 pull-left">
+                            <#include "/common/paginate.html" />
+                            <@paginate currentPage=pageData.getCurrent() totalPage=pageData.getPages()
+                            actionUrl="/remexplus/rpTask/list/" urlParas="?search=${search!}&pageSize=${pageSize!}" />
+                        </div>
+                    </div>
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+</@body>
+<@footer>
+</@footer>
