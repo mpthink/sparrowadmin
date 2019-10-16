@@ -167,6 +167,13 @@
             <version>${gson.version}</version>
         </dependency>
 
+		<!-- remex dependencies -->
+		<dependency>
+			<groupId>com.dell.storage.remex</groupId>
+			<artifactId>messages</artifactId>
+			<version>[4.1.1.1000,4.1.1.9999]</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

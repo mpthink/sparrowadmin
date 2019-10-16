@@ -1,7 +1,5 @@
 package com.think.sparrowadmin.common.controller;
 
-import com.think.sparrowadmin.common.config.Config;
-import com.think.sparrowadmin.common.util.OSinfoUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -17,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+
+import static com.think.sparrowadmin.common.config.Config.UPLOAD_FOLDER;
 
 /**
  * 文件上传控制器
@@ -40,14 +40,7 @@ public class FileUploadController extends SuperController{
 		
 		List<String> urls = new ArrayList<>();
 		Map<String, Object> result = new HashMap<>();
-		String staticFolder;
-		if(OSinfoUtil.isWindows()){
-		    staticFolder = Config.WIN_UPLOAD_FOLDER;
-        }else {
-		    staticFolder = Config.LINUX_UPLOAD_FOLDER;
-        }
-
-		
+		String staticFolder = UPLOAD_FOLDER;
 		try {
 			for(MultipartFile myfile : file){  
 			        if(myfile.isEmpty()){  

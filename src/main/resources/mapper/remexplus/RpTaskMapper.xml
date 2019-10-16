@@ -6,7 +6,8 @@
     <resultMap id="BaseResultMap" type="com.think.sparrowadmin.remexplus.entity.RpTask">
         <id column="id" property="id" />
         <result column="name" property="name" />
-        <result column="owner" property="owner" />
+        <result column="owner_id" property="ownerId" />
+        <result column="owner_email" property="ownerEmail" />
         <result column="runner_pom" property="runnerPom" />
         <result column="submit_pom" property="submitPom" />
         <result column="remex_pom" property="remexPom" />
@@ -18,7 +19,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, owner, runner_pom, submit_pom, remex_pom, quartz, gmt_create, gmt_update, status
+        id, name, owner_id, owner_email, runner_pom, submit_pom, remex_pom, quartz, gmt_create, gmt_update, status
     </sql>
 
     <select id="selectTaskList" resultMap="BaseResultMap" resultType="com.think.sparrowadmin.remexplus.entity.RpTask">

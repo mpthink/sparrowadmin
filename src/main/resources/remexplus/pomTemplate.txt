@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.dell.compellent.systemtest</groupId>
+        <artifactId>systest-parent</artifactId>
+        <version>1.0.5</version>
+    </parent>
+    <groupId>com.dell.compellent.systemtest</groupId>
+    <artifactId>remex-test-pom</artifactId>
+    <version>3.0.1-SNAPSHOT</version>
+    <dependencies><replacement>
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>1.6.0</version>
+            <scope>system</scope>
+            <systemPath>${java.home}/../lib/tools.jar</systemPath>
+        </dependency>
+    </dependencies>
+    <organization>
+        <name>Dell Compellent</name>
+        <url>http://www.compellent.com</url>
+    </organization>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <mainClass>${test.remex.job.mainClass}</mainClass>
+                    <arguments>
+                        <argument>-AutoLoadConfigFile</argument>
+                        <argument>${test.remex.job.configFile}</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

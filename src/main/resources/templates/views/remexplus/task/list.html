@@ -31,8 +31,8 @@
                                     NO
                                 </th>
                                 <th>Task Name</th>
-                                <th>Owner</th>
-                                <th>Runner Pom</th>
+                                <th>Owner ID</th>
+                                <th>Owner Email</th>
                                 <th>Submit Pom</th>
                                 <th>Remex Pom</th>
                                 <th>Quartz</th>
@@ -47,10 +47,10 @@
                                         </label>
                                     </td>
                                     <td>${(task.name)!}</td>
-                                    <td>${(task.owner)!'--'}</td>
-                                    <td>${(task.runnerPom)!'--'}</td>
-                                    <td>${(task.submitPom)!'--'}</td>
-                                    <td>${(task.remexPom)!'--'}</td>
+                                    <td>${(task.ownerId)!'--'}</td>
+                                    <td>${(task.ownerEmail)!'--'}</td>
+                                    <td>${(task.submitPom?split("/"))[3]!'--'} </td>
+                                    <td>${(task.remexPom?split("/"))[3]!'--'} </td>
                                     <td>${(task.quartz)!'--'}</td>
                                     <td>
                                         <#if task.status==0>Enable

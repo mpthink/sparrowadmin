@@ -6,16 +6,13 @@
  * WRITTEN PERMISSION FROM DELL INC.
  *****************************************************************************/
 
-package com.think.sparrowadmin.common.scheduler;
+package com.think.sparrowadmin.remexplus.service;
+
+import java.io.IOException;
 
 /**
  * @author map6
  */
-//@Component
-public class JobOne {
+public interface IBuildLaunchRequest {
 
-    //@Scheduled(cron = "0/2 * * * * ?")
-    public void doSomething(){
-        System.out.println("This is JobOne");
-    }
 }

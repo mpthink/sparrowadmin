@@ -14,14 +14,14 @@ function initFileInput(ctrlName) {
     });
 }
 
-initFileInput("runnerPomFile");
+initFileInput("remexPomFile");
 
 //上传成功回调函数
-$('#runnerPomFile').on("fileuploaded", function(event, data, previewId, index) {
+$('#remexPomFile').on("fileuploaded", function(event, data, previewId, index) {
     var result = data.response;
     console.log(result.status);
     console.log(result.urls);
-    $('#runnerPom').val(result.urls[0]);
+    $('#remexPom').val(result.urls[0]);
 });
 
 initFileInput("submitPomFile");

@@ -3,7 +3,7 @@ package com.think.sparrowadmin.remexplus.entity;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 /**
@@ -12,7 +12,7 @@ import java.util.Date;
  * </p>
  *
  * @author Paul Ma
- * @since 2019-09-29
+ * @since 2019-10-16
  */
 public class RpTask extends Model<RpTask> {
 
@@ -27,9 +27,13 @@ public class RpTask extends Model<RpTask> {
      */
 	private String name;
     /**
-     * task owner
+     * towner ID
      */
-	private String owner;
+	private String ownerId;
+    /**
+     * owner email address
+     */
+	private String ownerEmail;
     /**
      * runner pom file
      */
@@ -49,11 +53,11 @@ public class RpTask extends Model<RpTask> {
     /**
      * task create time
      */
-	private Date gmtCreate;
+	private LocalDateTime gmtCreate;
     /**
      * task create time
      */
-	private Date gmtUpdate;
+	private LocalDateTime gmtUpdate;
     /**
      * schedule status,0:enable,1:disable
      */
@@ -76,12 +80,20 @@ public class RpTask extends Model<RpTask> {
 		this.name = name;
 	}
 
-	public String getOwner() {
-		return owner;
+	public String getOwnerId() {
+		return ownerId;
 	}
 
-	public void setOwner(String owner) {
-		this.owner = owner;
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	public String getOwnerEmail() {
+		return ownerEmail;
+	}
+
+	public void setOwnerEmail(String ownerEmail) {
+		this.ownerEmail = ownerEmail;
 	}
 
 	public String getRunnerPom() {
@@ -116,19 +128,19 @@ public class RpTask extends Model<RpTask> {
 		this.quartz = quartz;
 	}
 
-	public Date getGmtCreate() {
+	public LocalDateTime getGmtCreate() {
 		return gmtCreate;
 	}
 
-	public void setGmtCreate(Date gmtCreate) {
+	public void setGmtCreate(LocalDateTime gmtCreate) {
 		this.gmtCreate = gmtCreate;
 	}
 
-	public Date getGmtUpdate() {
+	public LocalDateTime getGmtUpdate() {
 		return gmtUpdate;
 	}
 
-	public void setGmtUpdate(Date gmtUpdate) {
+	public void setGmtUpdate(LocalDateTime gmtUpdate) {
 		this.gmtUpdate = gmtUpdate;
 	}
 
@@ -148,6 +160,6 @@ public class RpTask extends Model<RpTask> {
 
 	@Override
 	public String toString(){
-		return "RpTask [id=" + id + ", name=" + name + ", owner=" + owner + ", runnerPom=" + runnerPom + ", submitPom=" + submitPom + ", remexPom=" + remexPom + ", quartz=" + quartz + ", gmtCreate=" + gmtCreate + ", gmtUpdate=" + gmtUpdate + ", status=" + status + ", ";
+		return "RpTask [id=" + id + ", name=" + name + ", ownerId=" + ownerId + ", ownerEmail=" + ownerEmail + ", runnerPom=" + runnerPom + ", submitPom=" + submitPom + ", remexPom=" + remexPom + ", quartz=" + quartz + ", gmtCreate=" + gmtCreate + ", gmtUpdate=" + gmtUpdate + ", status=" + status + ", ";
 	}
 }

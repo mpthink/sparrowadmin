@@ -8,9 +8,7 @@
 
 package com.think.sparrowadmin.springConfig;
 
-import com.think.sparrowadmin.common.config.Config;
 import com.think.sparrowadmin.common.interceptor.GlobalInterceptor;
-import com.think.sparrowadmin.common.util.OSinfoUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,6 +16,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+
+import static com.think.sparrowadmin.common.config.Config.UPLOAD_FOLDER;
 
 /**
  * MVC springConfig resource mapping and freemarker view resolver
@@ -30,12 +30,12 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         // https://blog.csdn.net/qq_39025156/article/details/90055132
-        String uploadFilePath = OSinfoUtil.isWindows() ? Config.WIN_UPLOAD_FOLDER : Config.LINUX_UPLOAD_FOLDER;
+        //String uploadFilePath = OSinfoUtil.isWindows() ? Config.WIN_UPLOAD_FOLDER : Config.LINUX_UPLOAD_FOLDER;
         //资源映射
         registry.addResourceHandler("/plugins/**").addResourceLocations("classpath:/static/plugins/");
         registry.addResourceHandler("/app/**").addResourceLocations("classpath:/static/app/");
         registry.addResourceHandler("/remexplus/**").addResourceLocations("classpath:/static/remexplus/");
-        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + uploadFilePath);
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + UPLOAD_FOLDER);
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 
