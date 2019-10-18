@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -84,16 +85,43 @@ public class FileHandleUtils {
     /**
      * @args command line arguments
      */
-    public static void main(String[] args) {
-        String filePath = "C:\\sparrowUpload\\2019-10-11\\pom-submit-cache-751.xml";
-        String fileCotent = readFileByChars(new File(filePath));
+    public static void main(String[] args) throws JAXBException {
+        String filePath = "C:\\sparrowUpload\\2019-10-11\\remex-submit-cache-751.xml";
 
-        int begin = fileCotent.indexOf("<dependencies>");
-        int end = fileCotent.indexOf("</dependencies>");
+//        JAXBContext jc = JAXBContext.newInstance(RemexSubmit.class);
+//        Unmarshaller u = jc.createUnmarshaller();
+//
+//        com.think.sparrowadmin.remexplus.config.v1_10.RemexSubmit remexSubmit = (com.think.sparrowadmin.remexplus.config.v1_10.RemexSubmit) u.unmarshal(new File(filePath));
+//
+//        List<JobGroupType> jobGroups = remexSubmit.getJobGroups().getJobGroup();
+//        List<PoolGroupType> poolGroups = remexSubmit.getPoolGroups().getPoolGroup();
+//        List<SubmitGroupType> submitGroups = remexSubmit.getSubmitGroups().getSubmitGroup();
+//
+//        Map<String, JobGroupType> jobGroupTypeMap = jobGroups.stream().collect(Collectors.toMap(JobGroupType::getId, jobGroupType -> jobGroupType));
+//        Map<String, PoolGroupType> poolGroupTypeMap = poolGroups.stream().collect(Collectors.toMap(PoolGroupType::getId, poolGroupType -> poolGroupType));
+//
+//
+//        for (SubmitGroupType submitGroup : submitGroups) {
+//            String jobGroupRef = submitGroup.getJobGroupRef();
+//            String poolGroupRef = submitGroup.getPoolGroupRef();
+//            JobGroupType jobGroupType = jobGroupTypeMap.get(jobGroupRef);
+//            PoolGroupType poolGroupType = poolGroupTypeMap.get(poolGroupRef);
+//
+//            List<JobType> jobs = jobGroupType.getJob();
+//            for (JobType job : jobs) {
+//                System.out.println("Job Name: "+job.getClazz());
+//
+//                List<PoolType> pools = poolGroupType.getPool();
+//                for (PoolType pool : pools) {
+//                    System.out.println("Pool: " + pool.getId());
+//                }
+//            }
+//
+//        }
+//
+//
 
-        String subString = fileCotent.substring(begin + 14, end);
-        System.out.println(replaceSpecialStr(subString));
-
+        System.out.println("ok");
     }
 
 }
