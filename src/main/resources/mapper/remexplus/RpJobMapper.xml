@@ -8,11 +8,12 @@
         <result column="name" property="name" />
         <result column="remex_job_id" property="remexJobId" />
         <result column="status" property="status" />
+        <result column="result" property="result" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, remex_job_id, status
+        id, name, remex_job_id, status, result
     </sql>
 
 </mapper>

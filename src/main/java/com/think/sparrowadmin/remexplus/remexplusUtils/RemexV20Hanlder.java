@@ -12,6 +12,7 @@ import com.dell.compellent.test.remex.message.v4_00.remoteexecution.JobSubmitReq
 import com.dell.compellent.test.remex.message.v4_00.remoteexecution.JobSubmitResponse;
 import com.think.sparrowadmin.remexplus.config.v1_20.*;
 import com.think.sparrowadmin.remexplus.entity.RpTask;
+import com.think.sparrowadmin.remexplus.entity.RpTaskRecord;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,7 +27,7 @@ public class RemexV20Hanlder {
 
     private static final String submitUrl = "http://sqaprod.lab.beer.town:8080/remex/rest/jobmgr/v4/job/submit";
 
-    public static void processRemexJobsV20(RemexSubmit remexSubmit, RpTask task){
+    public static void processRemexJobsV20(RemexSubmit remexSubmit, RpTask task, RpTaskRecord rpTaskRecord){
         RestTemplate template = new RestTemplate();
         List< HttpMessageConverter<?>> converters = BuildJobSubmitRequest.buildConverts();
         template.setMessageConverters(converters);

@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Paul Ma
- * @since 2019-09-29
+ * @since 2019-10-22
  */
 public class RpJob extends Model<RpJob> {
 
@@ -30,9 +30,13 @@ public class RpJob extends Model<RpJob> {
      */
 	private String remexJobId;
     /**
-     * job status,0:scheduled,1:started,2:launched,3:running,4:completed.....
+     * job status
      */
-	private Integer status;
+	private String status;
+    /**
+     * job result
+     */
+	private String result;
 
 
 	public String getId() {
@@ -59,12 +63,20 @@ public class RpJob extends Model<RpJob> {
 		this.remexJobId = remexJobId;
 	}
 
-	public Integer getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	@Override
@@ -75,6 +87,6 @@ public class RpJob extends Model<RpJob> {
 
 	@Override
 	public String toString(){
-		return "RpJob [id=" + id + ", name=" + name + ", remexJobId=" + remexJobId + ", status=" + status + ", ";
+		return "RpJob [id=" + id + ", name=" + name + ", remexJobId=" + remexJobId + ", status=" + status + ", result=" + result + ", ";
 	}
 }

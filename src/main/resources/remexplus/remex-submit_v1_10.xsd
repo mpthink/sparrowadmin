@@ -1,0 +1,118 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:sub="http://www.dell.com/storage/test/remex/submit/config/v1_10"
+            targetNamespace="http://www.dell.com/storage/test/remex/submit/config/v1_10"
+            version="1.10">
+
+  <!-- Defines syntax of a valid identifier. -->
+  <xsd:simpleType name="qualifiedIdentifierType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="([\p{L}_$][\p{L}\p{N}_$]*\.)*[\p{L}_$][\p{L}\p{N}_$]*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Defines syntax of a valid identifier. -->
+  <xsd:simpleType name="identifierType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="([\p{L}_$][\p{L}\p{N}_$]*)*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Defines syntax for a valid Windows/*nix file path. -->
+  <xsd:simpleType name="filePathType">
+    <xsd:restriction base="xsd:normalizedString">
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Defines bounds for a valid job priority -->
+  <xsd:simpleType name="jobPriorityType">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="-255"/>
+      <xsd:maxInclusive value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- A job group contains one or more jobs which are submitted together to Remote Execution -->
+  <xsd:complexType name="jobGroupType">
+    <xsd:sequence>
+      <xsd:element name="pomPath" type="sub:filePathType"/>
+      <xsd:element name="job" type="sub:jobType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="sub:identifierType" use="required"/>
+    <xsd:attribute name="failAndContinue" type="xsd:boolean" default="false"/>
+    <xsd:attribute name="submitToAll" type="xsd:boolean" default="false"/>
+    <xsd:attribute name="priority" type="sub:jobPriorityType" default="0"/>
+    <xsd:attribute name="groupId" type="sub:identifierType" use="optional"/>
+  </xsd:complexType>
+
+  <!-- Aggregation of one or more job groups. -->
+  <xsd:complexType name="jobGroupsType">
+    <xsd:sequence>
+      <xsd:element name="jobGroup" type="sub:jobGroupType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="groupId" type="sub:identifierType" use="optional"/>
+  </xsd:complexType>
+
+  <!-- Definition of a single job which is submitted to Remote Execution against one or pools. -->
+  <xsd:complexType name="jobType">
+    <xsd:sequence>
+      <xsd:element name="configPath" type="sub:filePathType" minOccurs="0"/>
+      <xsd:element name="testRunsPath" type="sub:filePathType" minOccurs="0"/>
+      <xsd:element name="pomPath" type="sub:filePathType" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="class" type="sub:qualifiedIdentifierType" use="required"/>
+    <xsd:attribute name="failAndContinue" type="xsd:boolean" use="optional"/>
+    <xsd:attribute name="submitToAll" type="xsd:boolean" use="optional"/>
+    <xsd:attribute name="priority" type="sub:jobPriorityType" use="optional"/>
+  </xsd:complexType>
+
+  <!-- Data type defines available pools for job submission. -->
+  <xsd:complexType name="poolType">
+    <xsd:attribute name="id" type="sub:qualifiedIdentifierType" use="required"/>
+    <xsd:attribute name="reserveBeforeUse" type="xsd:boolean" default="false" />
+  </xsd:complexType>
+
+  <!-- A pool group is composed of one or more pools to which jobs may be submitted. -->
+  <xsd:complexType name="poolGroupType">
+    <xsd:sequence>
+      <xsd:element name="pool" type="sub:poolType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="sub:identifierType" use="required"/>
+  </xsd:complexType>
+
+  <!-- Aggregation of one or more pool groups -->
+  <xsd:complexType name="poolGroupsType">
+    <xsd:sequence>
+      <xsd:element name="poolGroup" type="sub:poolGroupType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- A submit group maps a job group to a pool group, defining to which pool(s) the jobs are submitted. -->
+  <xsd:complexType name="submitGroupType">
+    <xsd:attribute name="poolGroupRef" type="sub:qualifiedIdentifierType" use="required"/>
+    <xsd:attribute name="jobGroupRef" type="sub:qualifiedIdentifierType" use="required"/>
+    <xsd:attribute name="groupId" type="sub:identifierType" use="optional"/>
+  </xsd:complexType>
+
+  <!-- Aggregation of one or more submit groups. -->
+  <xsd:complexType name="submitGroupsType">
+    <xsd:sequence>
+      <xsd:element name="submitGroup" type="sub:submitGroupType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="groupId" type="sub:identifierType" use="optional"/>
+  </xsd:complexType>
+
+  <!-- Complete Remex Submission document -->
+  <xsd:element name="remexSubmit">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="poolGroups" type="sub:poolGroupsType"/>
+        <xsd:element name="jobGroups" type="sub:jobGroupsType"/>
+        <xsd:element name="submitGroups" type="sub:submitGroupsType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>
+
+
+

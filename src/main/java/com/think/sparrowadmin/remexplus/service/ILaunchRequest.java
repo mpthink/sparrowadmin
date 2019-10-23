@@ -8,11 +8,14 @@
 
 package com.think.sparrowadmin.remexplus.service;
 
-import java.io.IOException;
+import com.think.sparrowadmin.remexplus.entity.RpTask;
+import com.think.sparrowadmin.remexplus.entity.RpTaskRecord;
 
 /**
  * @author map6
  */
-public interface IBuildLaunchRequest {
+public interface ILaunchRequest {
+
+    void launchJobsFromRemexFile(RpTask task, RpTaskRecord rpTaskRecord);
 
 }

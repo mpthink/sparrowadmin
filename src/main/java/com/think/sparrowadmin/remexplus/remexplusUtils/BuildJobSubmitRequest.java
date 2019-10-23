@@ -40,13 +40,17 @@ public class BuildJobSubmitRequest {
 
 
     public static JobSubmitRequest buildJobLaunchRequest(RpTask task, JobType job, String poolId){
+        LOG.debug("buildJobLaunchRequest: try to build request...");
         JobSubmitRequest jobSubmitRequest = new JobSubmitRequest();
         RequestHeaderType header = new RequestHeaderType();
         header.setTimestamp(new XMLGregorianCalendarImpl(new GregorianCalendar()));
         header.setUserName(task.getOwnerId());
+        //header.setExternalId("pmstone:map6:215518ff-c6a8-4a2e-acd1-598cc17347e0");
+        //header.setHostName("pmstone");
+        header.setSourceId(SourceEnum.USER);
         jobSubmitRequest.setRequestHeader(header);
+
         ResourceSpecificationType resourceSpecification =  new ResourceSpecificationType();
-        //TODO
         RigSpecificationType rigSpec = new RigSpecificationType();
         rigSpec.setGenerated(false); //TODO double check this value when select pool
         resourceSpecification.setRigSpecification(rigSpec);
@@ -70,7 +74,7 @@ public class BuildJobSubmitRequest {
         TestPayload testPayload = buildTestPayLoad(task, job.getClazz(), poolId);
         jobSpecification.setPayload(convertToXML(testPayload).getBytes());
         jobSubmitRequest.setJobSpecification(jobSpecification);
-
+        LOG.debug("buildJobLaunchRequest: build finished...");
         return jobSubmitRequest;
     }
 
@@ -89,12 +93,12 @@ public class BuildJobSubmitRequest {
 
     public static Object buildRemexSubmitObject(String remexPomPath) throws JAXBException {
         String remexPomAbsolutePath = Config.UPLOAD_FOLDER + remexPomPath.replace("/upload/","");
-        String fileContent = FileHandleUtils.readFileByChars(new File(remexPomAbsolutePath));
         JAXBContext jaxbContext = null;
         Object object;
-        if(fileContent.contains("remex/submit/config/v1_20")){
+        int fileFormatValue = RemexPomValidate.validateRemexPomWithFilePath(remexPomAbsolutePath);
+        if(fileFormatValue == 2){
             jaxbContext = JAXBContext.newInstance(com.think.sparrowadmin.remexplus.config.v1_20.RemexSubmit.class);
-        }else if(fileContent.contains("remex/submit/config/v1_10")){
+        }else if(fileFormatValue == 1){
             jaxbContext = JAXBContext.newInstance(com.think.sparrowadmin.remexplus.config.v1_10.RemexSubmit.class);
         }else{
             LOG.error("Not supported remex pom file format!!");
@@ -123,7 +127,7 @@ public class BuildJobSubmitRequest {
         int begin = taskSubmitFileContent.indexOf("<dependencies>");
         int end = taskSubmitFileContent.indexOf("</dependencies>");
         String dependencies = FileHandleUtils.replaceSpecialStr(taskSubmitFileContent.substring(begin + 14, end));
-        pomTemplateContent.replace("<replacement>",dependencies);
+        pomTemplateContent = pomTemplateContent.replace("<replacement>",dependencies);
         return pomTemplateContent;
     }
 
@@ -135,12 +139,13 @@ public class BuildJobSubmitRequest {
         String dateString = new Date().toString();
         String[] strings = mainClass.split("\\.");
         String className = strings[strings.length-1];
-        templateConfig.replace("<classname>", className);
-        templateConfig.replace("<classnamewithpackage>", mainClass);
-        templateConfig.replace("<date>", dateString);
-        templateConfig.replace("<poolName>", poolName);
-        templateConfig.replace("<email>", email);
-        return templateConfig;
+        String result = templateConfig.replace("<classname>", className)
+                                      .replace("<classnamewithpackage>", mainClass)
+                                      .replace("<date>", dateString)
+                                      .replace("<poolName>", poolName)
+                                      .replace("<email>", email);
+
+        return result;
     }
 
     private static String convertToXML(Object object){

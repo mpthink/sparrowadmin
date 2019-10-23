@@ -10,7 +10,10 @@ package com.think.sparrowadmin.common.scheduler;
 
 import com.think.sparrowadmin.common.util.SpringUtil;
 import com.think.sparrowadmin.remexplus.entity.RpTask;
-import com.think.sparrowadmin.remexplus.service.IBuildLaunchRequest;
+import com.think.sparrowadmin.remexplus.entity.RpTaskRecord;
+import com.think.sparrowadmin.remexplus.service.ILaunchRequest;
+
+import java.util.Date;
 
 /**
  * @author map6
@@ -19,7 +22,7 @@ public class TaskRunner implements Runnable{
 
     private RpTask rpTask;
 
-    private IBuildLaunchRequest buildLaunchRequest = SpringUtil.getBean(IBuildLaunchRequest.class);
+    private ILaunchRequest buildLaunchRequest = SpringUtil.getBean(ILaunchRequest.class);
 
     public TaskRunner(RpTask task){
         this.rpTask = task;
@@ -27,10 +30,12 @@ public class TaskRunner implements Runnable{
 
     @Override
     public void run() {
-        //TODO launch all jobs
-        System.out.println("just for testing.....................");
-        //Read file
-
+        //System.out.println("just for testing.....................");
+        RpTaskRecord rpTaskRecord = new RpTaskRecord();
+        rpTaskRecord.setTaskId(rpTask.getId());
+        rpTaskRecord.setGmtCreate(new Date());
+        rpTaskRecord.insert();
+        buildLaunchRequest.launchJobsFromRemexFile(rpTask, rpTaskRecord);
     }
 
 

@@ -68,7 +68,7 @@ public class CodeGeneratorForRemExPlus {
         //strategyConfig.setTablePrefix(new String[] { "bmd_", "mp_" });// 此处可以修改为您的表前缀
         //strategyConfig.setTablePrefix(new String[] { "wsale_"});// 此处可以修改为您的表前缀
         //strategyConfig.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategyConfig.setInclude(new String[] { "rp_task"}); // 需要生成的表
+        strategyConfig.setInclude(new String[] { "rp_job"}); // 需要生成的表
         //strategyConfig.setExclude(new String[]{"test"}); // 排除生成的表
         // 字段名生成策略
         //strategyConfig.setFieldNaming(NamingStrategy.nochange);

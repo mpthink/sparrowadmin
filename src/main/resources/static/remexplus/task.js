@@ -1,4 +1,4 @@
-var fileUploadUrl = "/file/upload";
+var fileUploadUrl = "/file/upload/remexplus";
 var fileDeleteUrl = "/file/delete";
 
 //初始化fileinput控件
