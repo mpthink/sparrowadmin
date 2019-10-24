@@ -7,6 +7,7 @@ import com.think.sparrowadmin.common.bean.Rest;
 import com.think.sparrowadmin.common.controller.SuperController;
 import com.think.sparrowadmin.common.scheduler.IScheduleCronTaskService;
 import com.think.sparrowadmin.remexplus.entity.RpTask;
+import com.think.sparrowadmin.remexplus.service.IRpTaskRecordService;
 import com.think.sparrowadmin.remexplus.service.IRpTaskService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class RpTaskController extends SuperController {
 
     @Autowired
     private IRpTaskService rpTaskService;
+
+    @Autowired
+    private IRpTaskRecordService rpTaskRecordService;
 
     @Autowired
     private IScheduleCronTaskService scheduleCronTaskService;
@@ -76,6 +80,7 @@ public class RpTaskController extends SuperController {
     @ResponseBody
     public  Rest delete(String id){
         rpTaskService.removeById(id);
+        rpTaskRecordService.removeRelatedTaskRecordAndJob(id);
         scheduleCronTaskService.removeCronTask(id);
         return Rest.ok();
     }
@@ -99,6 +104,12 @@ public class RpTaskController extends SuperController {
         rpTaskService.saveOrUpdate(rpTask);
         scheduleCronTaskService.updateCronTask(rpTask);
         return Rest.ok();
+    }
+
+    @RequestMapping("/last/status")
+    @ResponseBody
+    public String lastStatus(){
+        return toJson(rpTaskService.getTaskLastStatus());
     }
 }
 

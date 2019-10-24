@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,5 +21,7 @@ import java.util.List;
 public interface RpTaskMapper extends BaseMapper<RpTask> {
 
     List<RpTask> selectTaskList(Page<RpTask> page, @Param("search") String search);
+
+    List<Map<String,Object>> selectTaskWithRecordTimes();
 
 }

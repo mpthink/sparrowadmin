@@ -3,6 +3,7 @@ package com.think.sparrowadmin.remexplus.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.think.sparrowadmin.remexplus.entity.RpTaskRecord;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -17,5 +18,7 @@ import java.util.Map;
 public interface IRpTaskRecordService extends IService<RpTaskRecord> {
 
     List<Map<String, Object>> selectTaskRecords();
+
+    void removeRelatedTaskRecordAndJob(Serializable taskId);
 
 }

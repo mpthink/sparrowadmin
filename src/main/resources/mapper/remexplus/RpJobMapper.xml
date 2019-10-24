@@ -16,4 +16,24 @@
         id, name, remex_job_id, status, result
     </sql>
 
+    <select id="selectJobsByTaskRecordId" resultType="java.util.Map">
+        SELECT rp_job.name name, remex_job_id,rp_job.status status,rp_job.result result,rp_task.name task
+        FROM rp_job, rp_task, rp_task_record, rp_task_job
+        where rp_task.id = rp_task_record.task_id
+        and rp_task_record.id = rp_task_job.task_record_id
+        and rp_task_record.id = #{id}
+        order by rp_job.name
+    </select>
+
+    <select id="selectLastJobResult" resultType="java.util.Map">
+        SELECT
+        sum(case when result = 'Failed' then 1 end) as failed,
+        sum(case when result = 'Passed' then 1 end) as passed,
+        sum(case when result != 'Passed' and result != 'Failed'  then 1 end) as other
+        FROM
+        rp_job, rp_task_job
+        where rp_job.id = rp_task_job.job_id
+        and rp_task_job.task_record_id = #{id}
+    </select>
+
 </mapper>

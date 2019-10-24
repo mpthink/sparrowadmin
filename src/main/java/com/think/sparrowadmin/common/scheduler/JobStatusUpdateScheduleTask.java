@@ -36,7 +36,7 @@ public class JobStatusUpdateScheduleTask {
     @Autowired
     private IRpJobService jobService;
 
-    @Scheduled(cron = "0/10 * * * * *")
+    @Scheduled(cron = "0 */10 * * * *")
     public void updateJobStatusAndResult(){
         RestTemplate template = new RestTemplate();
         QueryWrapper<RpJob> queryWrapper = new QueryWrapper<>();

@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.think.sparrowadmin.remexplus.entity.RpTask;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * table for creating regular task 服务类
@@ -16,4 +19,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IRpTaskService extends IService<RpTask> {
 
     IPage<RpTask> selectTaskPage(Page<RpTask> page, String search);
+
+    List<Map<String,Object>> getTaskWithRecordTimes();
+
+    List<Map<String,Object>> getTaskLastStatus();
 }

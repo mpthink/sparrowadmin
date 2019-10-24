@@ -30,4 +30,11 @@
         ORDER BY task.`gmt_create` DESC
     </select>
 
+    <select id="selectTaskWithRecordTimes" resultType="java.util.Map">
+        SELECT rp_task.id id, rp_task.name name, count(name) records
+        FROM rp_task_record, rp_task
+        where rp_task.id = rp_task_record.task_id
+        group by id
+    </select>
+
 </mapper>

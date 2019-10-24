@@ -20,7 +20,7 @@ var dataColumns = [
         title: 'Jobs Status',
         formatter: function (value, row, index) {
             var taskRecordId = row.id;
-            return '<a class="btn btn-xs btn-primary" href="/remexplus/job/' + "" + taskRecordId + "" + '">Display</a>';
+            return '<a class="btn btn-xs btn-primary" href="/remexplus/job/list/' + "" + taskRecordId + "" + '">Display Jobs</a>';
         }
     }];
 
@@ -31,14 +31,14 @@ function taskRecordsClientPagination() {
         toolbar: '#toolbar',
         striped: true,
         cache: true,
-        pagination: false,
+        pagination: true,
         sortName: "gmt_create",
         sortable: true,
-        sortOrder: "asc",
+        sortOrder: "desc",
         sidePagination: "client",
         pageNumber: 1,
-        pageSize: 20,
-        pageList: [50, 100],
+        pageSize: 10,
+        pageList: [30, 50, 100],
         strictSearch: false,
         clickToSelect: true,
         cardView: false,

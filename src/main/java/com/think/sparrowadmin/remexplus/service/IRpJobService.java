@@ -1,7 +1,10 @@
 package com.think.sparrowadmin.remexplus.service;
 
-import com.think.sparrowadmin.remexplus.entity.RpJob;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.think.sparrowadmin.remexplus.entity.RpJob;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRpJobService extends IService<RpJob> {
 
+    List<Map<String, Object>> selectJobsByTaskRecordId(String id);
 }
