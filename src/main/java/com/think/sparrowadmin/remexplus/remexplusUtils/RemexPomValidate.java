@@ -59,6 +59,7 @@ public class RemexPomValidate {
             validator2.setErrorHandler(errorHandler2);
 
             validator1.validate(source);
+            validator2.validate(source);
             if(errorHandler1.getErrors().hasContent() && errorHandler2.getErrors().hasContent()){
                 LOG.error("file format is wrong");
                 return 0;
@@ -82,8 +83,17 @@ public class RemexPomValidate {
      * @args command line arguments
      */
     public static void main(String[] args) {
-        String xmlFilePath = "C:\\sparrowUpload\\2019-10-11\\remex-submit-cache-751.xml";
-        validateRemexPomWithFilePath(xmlFilePath);
+        String xmlFilePath = "C:\\Users\\map6\\Desktop\\remex-submitter\\remex-submit-cache-751.xml";
+        //String xmlFilePath = "C:\\Users\\map6\\Desktop\\remex-submitter\\test.xml";
+        String fileContent = FileHandleUtils.readFileByChars(new File(xmlFilePath));
+        if(fileContent.contains("v1_10")){
+            System.out.println("submit/config/v1_10");
+        }
+
+        int i = validateRemexPomWithFilePath(xmlFilePath);
+        System.out.println(i);
+
+
     }
 
 

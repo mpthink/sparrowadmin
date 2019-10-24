@@ -4,9 +4,12 @@ package com.think.sparrowadmin.remexplus.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.think.sparrowadmin.common.bean.Rest;
+import com.think.sparrowadmin.common.config.Config;
 import com.think.sparrowadmin.common.controller.SuperController;
 import com.think.sparrowadmin.common.scheduler.IScheduleCronTaskService;
 import com.think.sparrowadmin.remexplus.entity.RpTask;
+import com.think.sparrowadmin.remexplus.remexplusUtils.CronValidate;
+import com.think.sparrowadmin.remexplus.remexplusUtils.RemexPomValidate;
 import com.think.sparrowadmin.remexplus.service.IRpTaskRecordService;
 import com.think.sparrowadmin.remexplus.service.IRpTaskService;
 import org.apache.commons.lang3.StringUtils;
@@ -68,9 +71,17 @@ public class RpTaskController extends SuperController {
     @RequestMapping("/doAdd")
     @ResponseBody
     public Rest doAdd(RpTask task){
+        //validate cron expression, and remex pom file
+        if(!CronValidate.isValidExpression(task.getQuartz())){
+            return Rest.failure("The format of cron expression is wrong, please check!");
+        }
+        String remexPomAbsolutePath = Config.UPLOAD_FOLDER + task.getRemexPom().replace("/upload/","");
+        if(RemexPomValidate.validateRemexPomWithFilePath(remexPomAbsolutePath) == 0){
+            return Rest.failure("The format of remex pom file is wrong, please double check!");
+        }
         rpTaskService.save(task);
         scheduleCronTaskService.addCronTask(task);
-        return Rest.ok();
+        return Rest.ok("Success");
     }
 
     /**
@@ -101,6 +112,15 @@ public class RpTaskController extends SuperController {
     @RequestMapping("/doEdit")
     @ResponseBody
     public  Rest doEdit(RpTask rpTask, Model model){
+
+        if(!CronValidate.isValidExpression(rpTask.getQuartz())){
+            return Rest.failure("The format of cron expression is wrong, please check!");
+        }
+        String remexPomAbsolutePath = Config.UPLOAD_FOLDER + rpTask.getRemexPom().replace("/upload/","");
+        if(RemexPomValidate.validateRemexPomWithFilePath(remexPomAbsolutePath) == 0){
+            return Rest.failure("The format of remex pom file is wrong, please double check!");
+        }
+
         rpTaskService.saveOrUpdate(rpTask);
         scheduleCronTaskService.updateCronTask(rpTask);
         return Rest.ok();

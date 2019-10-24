@@ -19,9 +19,13 @@ initFileInput("remexPomFile");
 //上传成功回调函数
 $('#remexPomFile').on("fileuploaded", function(event, data, previewId, index) {
     var result = data.response;
-    console.log(result.status);
-    console.log(result.urls);
-    $('#remexPom').val(result.urls[0]);
+    if(result.status == 'success'){
+        $('#remexPom').val(result.urls[0]);
+    }else{
+        layer.alert(result.content, {icon: 0,title:'Info',closeBtn: 0,skin: 'layui-layer-lan',btn: ['OK']});
+    }
+    //console.log(result.status);
+    //console.log(result.urls);
 });
 
 initFileInput("submitPomFile");
@@ -29,7 +33,32 @@ initFileInput("submitPomFile");
 //上传成功回调函数
 $('#submitPomFile').on("fileuploaded", function(event, data, previewId, index) {
     var result = data.response;
-    console.log(result.status);
-    console.log(result.urls);
-    $('#submitPom').val(result.urls[0]);
+    if(result.status == 'success'){
+        $('#submitPom').val(result.urls[0]);
+    }else{
+        layer.alert(result.content, {icon: 0,title:'Info',closeBtn: 0,skin: 'layui-layer-lan',btn: ['OK']});
+    }
 });
+
+function addTask() {
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/remexplus/task/doAdd",
+        data: $('#addTaskForm').serialize(),
+        success: function (result) {
+            //console.log(result);
+            if (result.code == 200) {
+                layer.alert("Success", {icon: 6,title:'Info',closeBtn: 0, time:5000, skin: 'layui-layer-molv',btn: ['OK']});
+                parent.layer.closeAll();
+                parent.location.replace("/remexplus/task/list/1")
+            }else {
+                layer.alert(result.msg, {icon: 5,title:'Info',closeBtn: 0,time:5000 ,skin: 'layui-layer-lan',btn: ['OK']});
+            }
+        },
+        error : function() {
+            layer.alert("Submit ajax data exception", {icon: 2,title: 'Info',time:5000, closeBtn: 0,skin: 'layui-layer-lan',btn: ['OK']});
+        }
+    });
+
+};

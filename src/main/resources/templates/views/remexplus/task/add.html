@@ -2,7 +2,7 @@
     <@header>
 </@header>
 <@body>
-<form class="form-horizontal layui-form layui-form-pane" method="post" action="/remexplus/task/doAdd">
+<form class="form-horizontal layui-form layui-form-pane" method="post" id="addTaskForm">
     <div class="box-body">
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Task Name</label>
@@ -15,7 +15,7 @@
             <label for="ownerId" class="col-sm-2 control-label">Owner</label>
             <div class="col-sm-10">
                 <input type="text" id="ownerId" name="ownerId" class="form-control"
-                       placeholder="owner Id" lay-verify="required">
+                       placeholder="remex username" lay-verify="required">
             </div>
         </div>
         <div class="form-group">
@@ -49,13 +49,16 @@
         </div>
         <div class="form-group">
             <label for="quartz" class="col-sm-2 control-label">Cron</label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <input type="text" id="quartz" name="quartz" class="form-control"
-                       placeholder="quartz" lay-verify="required">
+                       placeholder="e.g: * * 1 ? * * *" lay-verify="required">
+            </div>
+            <div class="col-sm-2">
+                <a href="http://cron.qqe2.com/" target="_blank">Generate Cron</a>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">状态</label>
+            <label class="col-sm-2 control-label">Status</label>
             <div class="col-sm-10">
                 <label>
                     <input name="status" type="radio" class="minimal" checked value="0" lay-ignore> Enable
@@ -68,7 +71,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">&nbsp;</label>
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>
+                <button type="submit" onclick="addTask()" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>
                     Submit
                 </button>
             </div>

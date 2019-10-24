@@ -6,14 +6,14 @@
   <!-- Defines syntax of a valid identifier. -->
   <xsd:simpleType name="qualifiedIdentifierType">
     <xsd:restriction base="xsd:normalizedString">
-      <xsd:pattern value="([\p{L}_$][\p{L}\p{N}_$]*\.)*[\p{L}_$][\p{L}\p{N}_$]*"/>
+      <xsd:pattern value=".*"/>
     </xsd:restriction>
   </xsd:simpleType>
 
   <!-- Defines syntax of a valid identifier. -->
   <xsd:simpleType name="identifierType">
     <xsd:restriction base="xsd:normalizedString">
-      <xsd:pattern value="([\p{L}_$][\p{L}\p{N}_$]*)*"/>
+      <xsd:pattern value=".*"/>
     </xsd:restriction>
   </xsd:simpleType>
 
