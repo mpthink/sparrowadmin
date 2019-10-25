@@ -44,6 +44,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/swagger-ui.html")
                 .excludePathPatterns("/favicon.ico")
                 .excludePathPatterns("/upload/**")
+                .excludePathPatterns("/error/**")
                 .addPathPatterns("/**");
     }
 
