@@ -25,7 +25,7 @@ function viewTaskStatus(){
                 type:'post',
                 success:function(result){
                     if(result==null||result==''){
-                        layer.alert('No data found', {icon: 0,title:'Info',closeBtn: 0,skin: 'layui-layer-molv'});
+                        //layer.alert('No data found', {icon: 0,title:'Info',closeBtn: 0,skin: 'layui-layer-molv',btn: ['OK']});
                         Chart.hideLoading();
                     }else{
                         for(var i=0;i<result.length;i++) {

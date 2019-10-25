@@ -72,13 +72,14 @@ public class RpTaskController extends SuperController {
     @ResponseBody
     public Rest doAdd(RpTask task){
         //validate cron expression, and remex pom file
-        if(!CronValidate.isValidExpression(task.getQuartz())){
+        if(!CronValidate.isValidExpression(task.getQuartz().trim())){
             return Rest.failure("The format of cron expression is wrong, please check!");
         }
         String remexPomAbsolutePath = Config.UPLOAD_FOLDER + task.getRemexPom().replace("/upload/","");
         if(RemexPomValidate.validateRemexPomWithFilePath(remexPomAbsolutePath) == 0){
             return Rest.failure("The format of remex pom file is wrong, please double check!");
         }
+        task.setQuartz(task.getQuartz().trim());
         rpTaskService.save(task);
         scheduleCronTaskService.addCronTask(task);
         return Rest.ok("Success");
@@ -113,14 +114,14 @@ public class RpTaskController extends SuperController {
     @ResponseBody
     public  Rest doEdit(RpTask rpTask, Model model){
 
-        if(!CronValidate.isValidExpression(rpTask.getQuartz())){
+        if(!CronValidate.isValidExpression(rpTask.getQuartz().trim())){
             return Rest.failure("The format of cron expression is wrong, please check!");
         }
         String remexPomAbsolutePath = Config.UPLOAD_FOLDER + rpTask.getRemexPom().replace("/upload/","");
         if(RemexPomValidate.validateRemexPomWithFilePath(remexPomAbsolutePath) == 0){
             return Rest.failure("The format of remex pom file is wrong, please double check!");
         }
-
+        rpTask.setQuartz(rpTask.getQuartz().trim());
         rpTaskService.saveOrUpdate(rpTask);
         scheduleCronTaskService.updateCronTask(rpTask);
         return Rest.ok();
