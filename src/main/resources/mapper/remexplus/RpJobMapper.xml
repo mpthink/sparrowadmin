@@ -18,10 +18,11 @@
 
     <select id="selectJobsByTaskRecordId" resultType="java.util.Map">
         SELECT rp_job.name name, remex_job_id,rp_job.status status,rp_job.result result,rp_task.name task
-        FROM rp_job, rp_task, rp_task_record, rp_task_job
-        where rp_task.id = rp_task_record.task_id
-        and rp_task_record.id = rp_task_job.task_record_id
-        and rp_task_record.id = #{id}
+        FROM rp_job
+        left join rp_task_job on rp_job.id = rp_task_job.job_id
+        left join rp_task_record on rp_task_job.task_record_id = rp_task_record.id
+        left join rp_task on rp_task_record.task_id = rp_task.id
+        where rp_task_record.id = #{id}
         order by rp_job.name
     </select>
 
