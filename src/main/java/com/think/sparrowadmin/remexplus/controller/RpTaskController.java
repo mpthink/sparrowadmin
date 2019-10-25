@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.think.sparrowadmin.common.bean.Rest;
 import com.think.sparrowadmin.common.config.Config;
 import com.think.sparrowadmin.common.controller.SuperController;
-import com.think.sparrowadmin.common.scheduler.IScheduleCronTaskService;
+import com.think.sparrowadmin.remexplus.scheduler.IScheduleCronTaskService;
 import com.think.sparrowadmin.remexplus.entity.RpTask;
 import com.think.sparrowadmin.remexplus.remexplusUtils.CronValidate;
 import com.think.sparrowadmin.remexplus.remexplusUtils.RemexPomValidate;

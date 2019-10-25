@@ -6,7 +6,7 @@
  * WRITTEN PERMISSION FROM DELL INC.
  *****************************************************************************/
 
-package com.think.sparrowadmin.common.scheduler;
+package com.think.sparrowadmin.remexplus.scheduler;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dell.compellent.test.remex.message.v4_00.global.JobQueryType;
