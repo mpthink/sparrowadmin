@@ -11,8 +11,6 @@ package com.think.sparrowadmin.remexplus.remexplusUtils;
 import org.dom4j.util.XMLErrorHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -44,13 +42,14 @@ public class RemexPomValidate {
     public static int validateRemexPom(Source source) {
 
         try {
-            Resource resourceV1 = new ClassPathResource(remex_submit_v1);
-            Resource resourceV2 = new ClassPathResource(remex_submit_v2);
-            File v1File = resourceV1.getFile();
-            File v2File = resourceV2.getFile();
+            //Resource resourceV1 = new ClassPathResource(remex_submit_v1);
+            //Resource resourceV2 = new ClassPathResource(remex_submit_v2);
+            InputStream resourceV1 = Thread.currentThread().getContextClassLoader().getResourceAsStream(remex_submit_v1);
+            InputStream resourceV2 = Thread.currentThread().getContextClassLoader().getResourceAsStream(remex_submit_v2);
+
             SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-            Schema schemav1 = schemaFactory.newSchema(v1File);
-            Schema schemav2 = schemaFactory.newSchema(v2File);
+            Schema schemav1 = schemaFactory.newSchema(new StreamSource(resourceV1));
+            Schema schemav2 = schemaFactory.newSchema(new StreamSource(resourceV2));
             Validator validator1 = schemav1.newValidator();
             Validator validator2 = schemav2.newValidator();
             XMLErrorHandler errorHandler1 = new XMLErrorHandler();
