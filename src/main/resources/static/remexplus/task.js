@@ -39,26 +39,3 @@ $('#submitPomFile').on("fileuploaded", function(event, data, previewId, index) {
         layer.alert(result.content, {icon: 0,title:'Info',closeBtn: 0,skin: 'layui-layer-lan',btn: ['OK']});
     }
 });
-
-function addTask() {
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "/remexplus/task/doAdd",
-        data: $('#addTaskForm').serialize(),
-        success: function (result) {
-            //console.log(result);
-            if (result.code == 200) {
-                layer.alert("Success", {icon: 6,title:'Info',closeBtn: 0, time:5000, skin: 'layui-layer-molv',btn: ['OK']});
-                parent.layer.closeAll();
-                parent.location.replace("/remexplus/task/list/1")
-            }else {
-                layer.alert(result.msg, {icon: 5,title:'Info',closeBtn: 0,time:5000 ,skin: 'layui-layer-lan',btn: ['OK']});
-            }
-        },
-        error : function() {
-            layer.alert("Submit ajax data exception", {icon: 2,title: 'Info',time:5000, closeBtn: 0,skin: 'layui-layer-lan',btn: ['OK']});
-        }
-    });
-
-};

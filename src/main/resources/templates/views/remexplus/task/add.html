@@ -2,7 +2,7 @@
     <@header>
 </@header>
 <@body>
-<form class="form-horizontal layui-form layui-form-pane" method="post" id="addTaskForm">
+<form class="form-horizontal layui-form layui-form-pane" method="post" action="/remexplus/task/doAdd">
     <div class="box-body">
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Task Name</label>
@@ -71,7 +71,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">&nbsp;</label>
             <div class="col-sm-10">
-                <button type="submit" onclick="addTask()" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>
+                <button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>
                     Submit
                 </button>
             </div>
