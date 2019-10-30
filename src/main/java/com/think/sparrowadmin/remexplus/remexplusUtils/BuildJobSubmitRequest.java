@@ -112,7 +112,9 @@ public class BuildJobSubmitRequest {
     private static TestPayload buildTestPayLoad(RpTask task, String mainClass, String poolName){
         TestPayload testPayload = new TestPayload();
         String pomFileContent = buildPomFileContents(task.getSubmitPom());
+        //LOG.debug("pom File content: " + pomFileContent);
         String testConfig = buildTestConfig(mainClass, poolName, task.getOwnerEmail());
+        //LOG.debug("testConfig: " + testConfig);
         testPayload.setMainClass(mainClass);
         testPayload.setPomFileContents(pomFileContent.getBytes());
         testPayload.setTestConfig(testConfig.getBytes());

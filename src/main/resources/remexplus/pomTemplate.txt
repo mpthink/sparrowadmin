@@ -10,6 +10,11 @@
     <version>3.0.1-SNAPSHOT</version>
     <dependencies><replacement>
         <dependency>
+            <groupId>${job.integration.groupId}</groupId>
+            <artifactId>job-integration</artifactId>
+            <version>${job.integration.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.sun</groupId>
             <artifactId>tools</artifactId>
             <version>1.6.0</version>
