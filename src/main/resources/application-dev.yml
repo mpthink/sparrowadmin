@@ -67,7 +67,20 @@ spring:
       datetime_format: yyyy-MM-dd HH:mm:ss
       template_exception_handler: ignore
 
-
+  activemq:
+    #activeMQ地址
+    broker-url: tcp://39.105.92.43:61616
+    #是否启用内存模式（也就是不安装MQ，项目启动时同时也启动一个MQ实例）
+    in-memory: true
+    #activeMQ用户名，根据实际情况配置
+    user: admin
+    #activeMQ密码，根据实际情况配置
+    password: admin
+    #pool:
+      #是否替换默认的connectionFactory
+      #enabled: false
+      #最大连接数
+      #max-connections: 2
 
 ################# mybatis-plus ##################
 #refer to: https://mp.baomidou.com/config/#updatestrategy-since-3-1-2
@@ -103,5 +116,9 @@ logging:
 swagger:
   enable: true
 
-
-
+appconfig:
+  mqvalues:
+    queue1: test-queue1
+    queue2: test-queue2
+    topic1: test-topic1
+    topic2: test-topic2
