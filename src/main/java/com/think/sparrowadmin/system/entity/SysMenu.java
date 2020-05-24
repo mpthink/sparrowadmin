@@ -1,10 +1,16 @@
 package com.think.sparrowadmin.system.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 
 /**
  * <p>
@@ -12,178 +18,72 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Paul Ma
- * @since 2019-09-02
+ * @since 2020-05-24
  */
+@Data
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value="SysMenu对象", description="菜单表")
 public class SysMenu extends Model<SysMenu> {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID=1L;
 
-    /**
-     * 主键
-     */
-	private String id;
-    /**
-     * 父级菜单ID
-     */
-	private String pid;
-    /**
-     * 菜单名称
-     */
-	private String menuName;
-    /**
-     * 状态 0:正常 1:禁用
-     */
-	private Integer menuStatus;
-    /**
-     * 连接地址
-     */
-	private String url;
-    /**
-     * 图标
-     */
-	private String icon;
-    /**
-     * 排序
-     */
-	private Integer sort;
-    /**
-     * 深度
-     */
-	private Integer deep;
-    /**
-     * 编码
-     */
-	private String code;
-    /**
-     * 资源名称
-     */
-	private String resource;
-    /**
-     * 创建时间
-     */
-	private LocalDateTime gmtCreate;
-    /**
-     * 修改时间
-     */
-	private LocalDateTime gmtModified;
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "id", type = IdType.UUID)
+    private String id;
 
-	public SysMenu(){}
+    @ApiModelProperty(value = "父级菜单ID")
+    @TableField("pid")
+    private String pid;
 
-    public SysMenu(String menuName, String pid,  String url, String icon, Integer sort, Integer deep, String code, String resource) {
-        this.pid = pid;
-        this.menuName = menuName;
-        this.url = url;
-        this.icon = icon;
-        this.sort = sort;
-        this.deep = deep;
-        this.code = code;
-        this.resource = resource;
+    @ApiModelProperty(value = "菜单名称")
+    @TableField("menu_name")
+    private String menuName;
+
+    @ApiModelProperty(value = "状态 0:正常 1:禁用")
+    @TableField("menu_status")
+    private Integer menuStatus;
+
+    @ApiModelProperty(value = "连接地址")
+    @TableField("url")
+    private String url;
+
+    @ApiModelProperty(value = "图标")
+    @TableField("icon")
+    private String icon;
+
+    @ApiModelProperty(value = "排序")
+    @TableField("sort")
+    private Integer sort;
+
+    @ApiModelProperty(value = "深度")
+    @TableField("deep")
+    private Integer deep;
+
+    @ApiModelProperty(value = "编码")
+    @TableField("code")
+    private String code;
+
+    @ApiModelProperty(value = "资源名称")
+    @TableField("resource")
+    private String resource;
+
+    @ApiModelProperty(value = "创建时间")
+    @TableField("gmt_create")
+    private LocalDateTime gmtCreate;
+
+    @ApiModelProperty(value = "修改时间")
+    @TableField("gmt_modified")
+    private LocalDateTime gmtModified;
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
     }
 
-    public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getPid() {
-		return pid;
-	}
-
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
-
-	public String getMenuName() {
-		return menuName;
-	}
-
-	public void setMenuName(String menuName) {
-		this.menuName = menuName;
-	}
-
-	public Integer getMenuStatus() {
-		return menuStatus;
-	}
-
-	public void setMenuStatus(Integer menuStatus) {
-		this.menuStatus = menuStatus;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getIcon() {
-		return icon;
-	}
-
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-
-	public Integer getSort() {
-		return sort;
-	}
-
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
-
-	public Integer getDeep() {
-		return deep;
-	}
-
-	public void setDeep(Integer deep) {
-		this.deep = deep;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getResource() {
-		return resource;
-	}
-
-	public void setResource(String resource) {
-		this.resource = resource;
-	}
-
-	public LocalDateTime getGmtCreate() {
-		return gmtCreate;
-	}
-
-	public void setGmtCreate(LocalDateTime gmtCreate) {
-		this.gmtCreate = gmtCreate;
-	}
-
-	public LocalDateTime getGmtModified() {
-		return gmtModified;
-	}
-
-	public void setGmtModified(LocalDateTime gmtModified) {
-		this.gmtModified = gmtModified;
-	}
-
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
-
-
-	@Override
-	public String toString(){
-		return "SysMenu [id=" + id + ", pid=" + pid + ", menuName=" + menuName + ", menuStatus=" + menuStatus + ", url=" + url + ", icon=" + icon + ", sort=" + sort + ", deep=" + deep + ", code=" + code + ", resource=" + resource + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified + ", ";
-	}
 }

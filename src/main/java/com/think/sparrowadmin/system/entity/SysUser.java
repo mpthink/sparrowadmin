@@ -1,10 +1,16 @@
 package com.think.sparrowadmin.system.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 
 /**
  * <p>
@@ -12,118 +18,56 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Paul Ma
- * @since 2019-09-02
+ * @since 2020-05-24
  */
+@Data
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value="SysUser对象", description="用户表")
 public class SysUser extends Model<SysUser> {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID=1L;
 
-    /**
-     * 主键
-     */
-	private String id;
-    /**
-     * 用户名
-     */
-	private String userName;
-    /**
-     * 密码
-     */
-	private String password;
-    /**
-     * 用户状态,0:启用,1:禁用
-     */
-	private Integer userStatus;
-    /**
-     * 描述
-     */
-	private String userDesc;
-    /**
-     * 头像
-     */
-	private String avatar;
-    /**
-     * 创建时间
-     */
-	private LocalDateTime gmtCreate;
-    /**
-     * 修改时间
-     */
-	private LocalDateTime gmtModified;
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "id", type = IdType.UUID)
+    private String id;
 
+    @ApiModelProperty(value = "用户名")
+    @TableField("user_name")
+    private String userName;
 
-	public String getId() {
-		return id;
-	}
+    @ApiModelProperty(value = "密码")
+    @TableField("password")
+    private String password;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    @ApiModelProperty(value = "用户状态,0:启用,1:禁用")
+    @TableField("user_status")
+    private Integer userStatus;
 
-	public String getUserName() {
-		return userName;
-	}
+    @ApiModelProperty(value = "描述")
+    @TableField("user_desc")
+    private String userDesc;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    @ApiModelProperty(value = "头像")
+    @TableField("avatar")
+    private String avatar;
 
-	public String getPassword() {
-		return password;
-	}
+    @ApiModelProperty(value = "创建时间")
+    @TableField("gmt_create")
+    private LocalDateTime gmtCreate;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Integer getUserStatus() {
-		return userStatus;
-	}
-
-	public void setUserStatus(Integer userStatus) {
-		this.userStatus = userStatus;
-	}
-
-	public String getUserDesc() {
-		return userDesc;
-	}
-
-	public void setUserDesc(String userDesc) {
-		this.userDesc = userDesc;
-	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-	public LocalDateTime getGmtCreate() {
-		return gmtCreate;
-	}
-
-	public void setGmtCreate(LocalDateTime gmtCreate) {
-		this.gmtCreate = gmtCreate;
-	}
-
-	public LocalDateTime getGmtModified() {
-		return gmtModified;
-	}
-
-	public void setGmtModified(LocalDateTime gmtModified) {
-		this.gmtModified = gmtModified;
-	}
-
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
+    @ApiModelProperty(value = "修改时间")
+    @TableField("gmt_modified")
+    private LocalDateTime gmtModified;
 
 
-	@Override
-	public String toString(){
-		return "SysUser [id=" + id + ", userName=" + userName + ", password=" + password + ", userStatus=" + userStatus + ", userDesc=" + userDesc + ", avatar=" + avatar + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified + ", ";
-	}
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
 }

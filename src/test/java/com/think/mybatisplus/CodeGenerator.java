@@ -11,9 +11,11 @@ package com.think.mybatisplus;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
 /**
  * Refer to https://mp.baomidou.com/guide/generator.html
@@ -56,13 +58,15 @@ public class CodeGenerator {
         dataSourceConfig.setDbType(DbType.MYSQL);
         dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
         dataSourceConfig.setUsername("root");
-        dataSourceConfig.setPassword("phpwind.net");
-        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/sparrowadmin?characterEncoding=utf8");
+        dataSourceConfig.setPassword("passionalways");
+        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/sparrowadmin?useUnicode=true&useSSL=false&characterEncoding=utf8");
         autoGenerator.setDataSource(dataSourceConfig);
 
         // 策略配置
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
+        strategyConfig.setEntityLombokModel(true);
+        strategyConfig.setEntityTableFieldAnnotationEnable(true);
         // strategy.setCapitalMode(true);// 全局大写命名
         // strategy.setDbColumnUnderline(true);//全局下划线命名
         //strategy.setTablePrefix(new String[] { "bmd_", "mp_" });// 此处可以修改为您的表前缀
@@ -136,11 +140,11 @@ public class CodeGenerator {
         // tc.setService("...");
         // tc.setServiceImpl("...");
         // mpg.setTemplate(tc);
-        TemplateConfig templateConfig = new TemplateConfig();
-        templateConfig.setEntity("templates/generator/entity.java");  // override toString method
-        autoGenerator.setTemplate(templateConfig);
-
-        autoGenerator.setTemplateEngine(new VelocityTemplateEngine());
+//        TemplateConfig templateConfig = new TemplateConfig();
+//        templateConfig.setEntity("templates/generator/entity.java");  // override toString method
+//        autoGenerator.setTemplate(templateConfig);
+//
+//        autoGenerator.setTemplateEngine(new VelocityTemplateEngine());
         autoGenerator.execute();
     }
 }

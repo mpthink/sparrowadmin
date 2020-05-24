@@ -1,10 +1,16 @@
 package com.think.sparrowadmin.system.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 
 /**
  * <p>
@@ -12,118 +18,56 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Paul Ma
- * @since 2019-09-02
+ * @since 2020-05-24
  */
+@Data
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value="SysSetting对象", description="系统设置表")
 public class SysSetting extends Model<SysSetting> {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID=1L;
 
-    /**
-     * 主键
-     */
-	private String id;
-    /**
-     * 名称
-     */
-	private String sysName;
-    /**
-     * KEY
-     */
-	private String sysKey;
-    /**
-     * 值
-     */
-	private String sysValue;
-    /**
-     * 排序
-     */
-	private Integer sort;
-    /**
-     * 说明
-     */
-	private String sysDesc;
-    /**
-     * 创建时间
-     */
-	private LocalDateTime gmtCreate;
-    /**
-     * 修改时间
-     */
-	private LocalDateTime gmtModified;
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "id", type = IdType.UUID)
+    private String id;
 
+    @ApiModelProperty(value = "名称")
+    @TableField("sys_name")
+    private String sysName;
 
-	public String getId() {
-		return id;
-	}
+    @ApiModelProperty(value = "KEY")
+    @TableField("sys_key")
+    private String sysKey;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    @ApiModelProperty(value = "值")
+    @TableField("sys_value")
+    private String sysValue;
 
-	public String getSysName() {
-		return sysName;
-	}
+    @ApiModelProperty(value = "排序")
+    @TableField("sort")
+    private Integer sort;
 
-	public void setSysName(String sysName) {
-		this.sysName = sysName;
-	}
+    @ApiModelProperty(value = "说明")
+    @TableField("sys_desc")
+    private String sysDesc;
 
-	public String getSysKey() {
-		return sysKey;
-	}
+    @ApiModelProperty(value = "创建时间")
+    @TableField("gmt_create")
+    private LocalDateTime gmtCreate;
 
-	public void setSysKey(String sysKey) {
-		this.sysKey = sysKey;
-	}
-
-	public String getSysValue() {
-		return sysValue;
-	}
-
-	public void setSysValue(String sysValue) {
-		this.sysValue = sysValue;
-	}
-
-	public Integer getSort() {
-		return sort;
-	}
-
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
-
-	public String getSysDesc() {
-		return sysDesc;
-	}
-
-	public void setSysDesc(String sysDesc) {
-		this.sysDesc = sysDesc;
-	}
-
-	public LocalDateTime getGmtCreate() {
-		return gmtCreate;
-	}
-
-	public void setGmtCreate(LocalDateTime gmtCreate) {
-		this.gmtCreate = gmtCreate;
-	}
-
-	public LocalDateTime getGmtModified() {
-		return gmtModified;
-	}
-
-	public void setGmtModified(LocalDateTime gmtModified) {
-		this.gmtModified = gmtModified;
-	}
-
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
+    @ApiModelProperty(value = "修改时间")
+    @TableField("gmt_modified")
+    private LocalDateTime gmtModified;
 
 
-	@Override
-	public String toString(){
-		return "SysSetting [id=" + id + ", sysName=" + sysName + ", sysKey=" + sysKey + ", sysValue=" + sysValue + ", sort=" + sort + ", sysDesc=" + sysDesc + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified + ", ";
-	}
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
 }

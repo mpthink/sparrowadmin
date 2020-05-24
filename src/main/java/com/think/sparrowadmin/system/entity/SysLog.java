@@ -1,10 +1,16 @@
 package com.think.sparrowadmin.system.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 
 /**
  * <p>
@@ -12,94 +18,48 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Paul Ma
- * @since 2019-09-02
+ * @since 2020-05-24
  */
+@Data
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value="SysLog对象", description="日志表")
 public class SysLog extends Model<SysLog> {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID=1L;
 
-    /**
-     * 主键
-     */
-	private String id;
-    /**
-     * 用户
-     */
-	private String userName;
-    /**
-     * 日志
-     */
-	private String title;
-    /**
-     * 地址
-     */
-	private String url;
-    /**
-     * 参数
-     */
-	private String params;
-    /**
-     * 创建时间
-     */
-	private LocalDateTime gmtCreate;
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "id", type = IdType.UUID)
+    private String id;
 
+    @ApiModelProperty(value = "用户")
+    @TableField("user_name")
+    private String userName;
 
-	public String getId() {
-		return id;
-	}
+    @ApiModelProperty(value = "日志")
+    @TableField("title")
+    private String title;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    @ApiModelProperty(value = "地址")
+    @TableField("url")
+    private String url;
 
-	public String getUserName() {
-		return userName;
-	}
+    @ApiModelProperty(value = "参数")
+    @TableField("params")
+    private String params;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getParams() {
-		return params;
-	}
-
-	public void setParams(String params) {
-		this.params = params;
-	}
-
-	public LocalDateTime getGmtCreate() {
-		return gmtCreate;
-	}
-
-	public void setGmtCreate(LocalDateTime gmtCreate) {
-		this.gmtCreate = gmtCreate;
-	}
-
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
+    @ApiModelProperty(value = "创建时间")
+    @TableField("gmt_create")
+    private LocalDateTime gmtCreate;
 
 
-	@Override
-	public String toString(){
-		return "SysLog [id=" + id + ", userName=" + userName + ", title=" + title + ", url=" + url + ", params=" + params + ", gmtCreate=" + gmtCreate + ", ";
-	}
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
 }

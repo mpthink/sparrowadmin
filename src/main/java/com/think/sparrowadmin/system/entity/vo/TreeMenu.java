@@ -1,6 +1,8 @@
 package com.think.sparrowadmin.system.entity.vo;
 
 import com.think.sparrowadmin.system.entity.SysMenu;
+import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ import java.util.List;
  *
  * @author map6
  */
+@Data
+@ToString
 public class TreeMenu implements Serializable {
 
     /**
@@ -26,22 +30,4 @@ public class TreeMenu implements Serializable {
      * 子菜单
      */
     private List<TreeMenu> children = new ArrayList<>();
-
-    public SysMenu getSysMenu() {
-        return sysMenu;
-    }
-
-    public void setSysMenu(SysMenu sysMenu) {
-        this.sysMenu = sysMenu;
-    }
-
-    public List<TreeMenu> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<TreeMenu> children) {
-        this.children = children;
-    }
-
-
 }

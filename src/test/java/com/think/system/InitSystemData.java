@@ -52,68 +52,68 @@ public class InitSystemData {
     }
 
     public void initMenu(){
-        SysMenu sysMenu1 = new SysMenu("系统管理","0",null,"fa fa-cogs",1,1,"01",null);
-        sysMenu1.insert();
-        String pid1 = sysMenu1.getId();
-        SysMenu sysMenu11 = new SysMenu("用户管理",pid1,"/system/user/list/1","fa-user-circle-o",1,2,"0101","user");
-        sysMenu11.insert();
-        String userPID = sysMenu11.getId();
-        SysMenu sysMenu110 = new SysMenu("查看用户列表",userPID,null,null,0,3,"010100","listUser");
-        sysMenu110.insert();
-        SysMenu sysMenu111 = new SysMenu("新增用户",userPID,null,null,1,3,"010101","addUser");
-        sysMenu111.insert();
-        SysMenu sysMenu112 = new SysMenu("编辑用户",userPID,null,null,2,3,"010102","editUser");
-        sysMenu112.insert();
-        SysMenu sysMenu113 = new SysMenu("删除用户",userPID,null,null,3,3,"010103","deleteUser");
-        sysMenu113.insert();
-
-        SysMenu sysMenu12 = new SysMenu("角色管理",pid1,"/system/role/list/1","fa-users",2,2,"0102","role");
-        sysMenu12.insert();
-        String rolePID = sysMenu12.getId();
-        SysMenu sysMenu120 = new SysMenu("查看角色列表",rolePID,null,null,0,3,"010200","listRole");
-        sysMenu120.insert();
-        SysMenu sysMenu121 = new SysMenu("新增角色",rolePID,null,null,1,3,"010201","addRole");
-        sysMenu121.insert();
-        SysMenu sysMenu122 = new SysMenu("编辑角色",rolePID,null,null,2,3,"010202","editRole");
-        sysMenu122.insert();
-        SysMenu sysMenu123 = new SysMenu("删除角色",rolePID,null,null,3,3,"010203","deleteRole");
-        sysMenu123.insert();
-        SysMenu sysMenu124 = new SysMenu("角色授权",rolePID,null,null,4,3,"010204","authRole");
-        sysMenu124.insert();
-        SysMenu sysMenu125 = new SysMenu("批量删除角色",rolePID,null,null,5,3,"010205","deleteBatchRole");
-        sysMenu125.insert();
-
-        SysMenu sysMenu13 = new SysMenu("菜单管理",pid1,"/system/menu/list/1","fa-list",3,2,"0103","menu");
-        sysMenu13.insert();
-        String menuPID = sysMenu13.getId();
-        SysMenu sysMenu130 = new SysMenu("查看菜单列表",menuPID,null,null,0,3,"010300","listMenu");
-        sysMenu130.insert();
-        SysMenu sysMenu131 = new SysMenu("创建菜单",menuPID,null,null,1,3,"010301","addMenu");
-        sysMenu131.insert();
-        SysMenu sysMenu132 = new SysMenu("编辑菜单",menuPID,null,null,2,3,"010302","editMenu");
-        sysMenu132.insert();
-        SysMenu sysMenu133 = new SysMenu("删除菜单",menuPID,null,null,3,3,"010303","deleteMenu");
-        sysMenu133.insert();
-
-        SysMenu sysMenu14 = new SysMenu("业务日志",pid1,"/system/log/list/1","fa-info-circle",5,2,"0105","log");
-        sysMenu14.insert();
-        String logPID = sysMenu14.getId();
-        SysMenu sysMenu140 = new SysMenu("查看日志列表",logPID,null,null,0,3,"010500","listLog");
-        sysMenu140.insert();
-
-        SysMenu sysMenu15 = new SysMenu("系统配置",pid1,"/system/setting/page","fa-cog",6,2,"0106","setting");
-        sysMenu15.insert();
-        String sysPID = sysMenu15.getId();
-        SysMenu sysMenu150 = new SysMenu("查询系统配置",sysPID,null,null,0,3,"010600","listSetting");
-        sysMenu150.insert();
-        SysMenu sysMenu151 = new SysMenu("操作系统设置",sysPID,null,null,1,3,"010601","doSetting");
-        sysMenu151.insert();
-
-        SysMenu sysMenu16 = new SysMenu("系统监控",pid1,"/system/monitor/list","fa-eye",7,2,"0107",null);
-        sysMenu16.insert();
-        String monitorID = sysMenu16.getId();
-        SysMenu sysMenu160 = new SysMenu("监控列表",monitorID,null,null,1,3,"010701","monitorList");
-        sysMenu160.insert();
+//        SysMenu sysMenu1 = new SysMenu("系统管理","0","",1,"fa fa-cogs",1,"01","");
+//        sysMenu1.insert();
+//        String pid1 = sysMenu1.getId();
+//        SysMenu sysMenu11 = new SysMenu("用户管理",pid1,"/system/user/list/1","fa-user-circle-o",1,2,"0101","user");
+//        sysMenu11.insert();
+//        String userPID = sysMenu11.getId();
+//        SysMenu sysMenu110 = new SysMenu("查看用户列表",userPID,null,null,0,3,"010100","listUser");
+//        sysMenu110.insert();
+//        SysMenu sysMenu111 = new SysMenu("新增用户",userPID,null,null,1,3,"010101","addUser");
+//        sysMenu111.insert();
+//        SysMenu sysMenu112 = new SysMenu("编辑用户",userPID,null,null,2,3,"010102","editUser");
+//        sysMenu112.insert();
+//        SysMenu sysMenu113 = new SysMenu("删除用户",userPID,null,null,3,3,"010103","deleteUser");
+//        sysMenu113.insert();
+//
+//        SysMenu sysMenu12 = new SysMenu("角色管理",pid1,"/system/role/list/1","fa-users",2,2,"0102","role");
+//        sysMenu12.insert();
+//        String rolePID = sysMenu12.getId();
+//        SysMenu sysMenu120 = new SysMenu("查看角色列表",rolePID,null,null,0,3,"010200","listRole");
+//        sysMenu120.insert();
+//        SysMenu sysMenu121 = new SysMenu("新增角色",rolePID,null,null,1,3,"010201","addRole");
+//        sysMenu121.insert();
+//        SysMenu sysMenu122 = new SysMenu("编辑角色",rolePID,null,null,2,3,"010202","editRole");
+//        sysMenu122.insert();
+//        SysMenu sysMenu123 = new SysMenu("删除角色",rolePID,null,null,3,3,"010203","deleteRole");
+//        sysMenu123.insert();
+//        SysMenu sysMenu124 = new SysMenu("角色授权",rolePID,null,null,4,3,"010204","authRole");
+//        sysMenu124.insert();
+//        SysMenu sysMenu125 = new SysMenu("批量删除角色",rolePID,null,null,5,3,"010205","deleteBatchRole");
+//        sysMenu125.insert();
+//
+//        SysMenu sysMenu13 = new SysMenu("菜单管理",pid1,"/system/menu/list/1","fa-list",3,2,"0103","menu");
+//        sysMenu13.insert();
+//        String menuPID = sysMenu13.getId();
+//        SysMenu sysMenu130 = new SysMenu("查看菜单列表",menuPID,null,null,0,3,"010300","listMenu");
+//        sysMenu130.insert();
+//        SysMenu sysMenu131 = new SysMenu("创建菜单",menuPID,null,null,1,3,"010301","addMenu");
+//        sysMenu131.insert();
+//        SysMenu sysMenu132 = new SysMenu("编辑菜单",menuPID,null,null,2,3,"010302","editMenu");
+//        sysMenu132.insert();
+//        SysMenu sysMenu133 = new SysMenu("删除菜单",menuPID,null,null,3,3,"010303","deleteMenu");
+//        sysMenu133.insert();
+//
+//        SysMenu sysMenu14 = new SysMenu("业务日志",pid1,"/system/log/list/1","fa-info-circle",5,2,"0105","log");
+//        sysMenu14.insert();
+//        String logPID = sysMenu14.getId();
+//        SysMenu sysMenu140 = new SysMenu("查看日志列表",logPID,null,null,0,3,"010500","listLog");
+//        sysMenu140.insert();
+//
+//        SysMenu sysMenu15 = new SysMenu("系统配置",pid1,"/system/setting/page","fa-cog",6,2,"0106","setting");
+//        sysMenu15.insert();
+//        String sysPID = sysMenu15.getId();
+//        SysMenu sysMenu150 = new SysMenu("查询系统配置",sysPID,null,null,0,3,"010600","listSetting");
+//        sysMenu150.insert();
+//        SysMenu sysMenu151 = new SysMenu("操作系统设置",sysPID,null,null,1,3,"010601","doSetting");
+//        sysMenu151.insert();
+//
+//        SysMenu sysMenu16 = new SysMenu("系统监控",pid1,"/system/monitor/list","fa-eye",7,2,"0107",null);
+//        sysMenu16.insert();
+//        String monitorID = sysMenu16.getId();
+//        SysMenu sysMenu160 = new SysMenu("监控列表",monitorID,null,null,1,3,"010701","monitorList");
+//        sysMenu160.insert();
 
     }
 

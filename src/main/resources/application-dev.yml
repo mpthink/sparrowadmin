@@ -22,7 +22,7 @@ spring:
       # GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Password5' WITH GRANT OPTION;
       url: jdbc:mysql://127.0.0.1:3306/sparrowadmin?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
-      password: Password5
+      password: passionalways
       filter: mergeStat
       initial-size: 1
       min-idle: 1
@@ -99,6 +99,9 @@ logging:
     org.springframework: debug
   pattern:
     file: '%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n'
+
+swagger:
+  enable: true
 
 
 

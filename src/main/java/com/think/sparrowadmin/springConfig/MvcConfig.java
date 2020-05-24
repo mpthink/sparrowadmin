@@ -36,6 +36,8 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/app/**").addResourceLocations("classpath:/static/app/");
         registry.addResourceHandler("/upload/**").addResourceLocations("file:" + uploadFilePath);
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     @Override
